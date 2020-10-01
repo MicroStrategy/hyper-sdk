@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Initialization - Hyper SDK</title>
+  <link rel="stylesheet" href="css/bulma.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section class="hero is-bold is-dark">
+    <div class="hero-body">
+      <h1 class="title">Initialization</h1>
+      <h2 class="subtitle">
+        For Hyper SDK to work, we need
+        to initialize the SDK with a handful settings.
+      </h2>
+    </div>
+  </section>
+  <section class="section is-fullwidth">
+    <h2 class="title is-3">Set Library Server Base URI</h2>
+    <div class="field has-addons mt-4">
+      <div class="control">
+        <a class="button is-info">Set Server URL</a>
+      </div>
+      <div class="control is-expanded">
+        <input class="input" id="t-server-url" type="url" placeholder="Enter Library Server Base URI">
+      </div>
+    </div>
+  </section>
+  <section class="section is-fullwidth">
+    <h2 class="title is-3">Load Hyper SDK main JavaScript bundle</h2>
+    <figure class="highlight">
+      <div class="buttons has-addons">
+        <button class="button is-small copy">Copy</button>
+        <a href="preview.html" class="button is-small">Preview</a>
+      </div>
+      <pre>
+        <code class="language-html load-main-js" data-lang="html"></code>
+      </pre>
+    </figure>
+  </section>
+  <section class="section is-fullwidth">
+    <h2 class="title is-3">Call <code>mstrHyper.start</code></h2>
+    <figure class="highlight">
+      <div class="buttons has-addons">
+        <button class="button is-small copy">Copy</button>
+        <a href="preview.html" class="button is-small">Preview</a>
+      </div>
+      <pre>
+        <code class="language-html hyper-start" data-lang="html" data-tmpl="call-start"></code>
+      </pre>
+    </figure>
+  </section>
+  <script src="js/lib.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const serverURLInput = document.getElementById('t-server-url');
+      serverURLInput.value = demo.storage.server();
+
+      serverURLInput.addEventListener('change', () => {
+        let newURL = serverURLInput.value;
+        if (newURL.charAt(newURL.length - 1) !== '/') {
+          newURL += '/';
+        }
+
+        demo.storage.server(newURL);
+      })
+    });
+  </script>
+</body>
+</html>

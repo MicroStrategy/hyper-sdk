@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Highlight Settings - Hyper SDK</title>
+  <link rel="stylesheet" href="css/bulma.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section class="hero is-bold is-warning">
+    <div class="hero-body">
+      <h1 class="title">Highlight Settings</h1>
+    </div>
+  </section>
+  <form name="form" class="container mt-5">
+    <div class="field is-horizontal mt-6">
+      <div class="field-label">
+        <label class="label">Highlight Type</label>
+      </div>
+      <div class="field-body">
+        <div class="control">
+          <div class="select">
+            <select name="type">
+              <option>mstrHyper.HIGHLIGHT_TYPES.DISABLED</option>
+              <option value="mstrHyper.HIGHLIGHT_TYPES.INSERTION">mstrHyper.HIGHLIGHT_TYPES.INSERTION (default)</option>
+              <option>mstrHyper.HIGHLIGHT_TYPES.OVERLAY</option>
+              <option value="">[Clear, use default value]</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field is-horizontal">
+      <div class="field-label">
+        <label class="label">Highlight Iframes</label>
+      </div>
+      <div class="field-body">
+        <div class="control">
+          <label class="radio">
+            <input type="radio" name="iframes" checked>
+            Yes (default)
+          </label>
+          <label class="radio">
+            <input type="radio" name="iframes">
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+  <figure class="highlight mt-6">
+    <div class="buttons has-addons">
+      <button class="button is-small copy">Copy</button>
+      <a href="preview.html" class="button is-small">Preview</a>
+    </div>
+    <pre>
+      <code class="language-html hyper-start" data-lang="html" data-tmpl="call-start"></code>
+    </pre>
+  </figure>
+  <script src="js/lib.js"></script>
+  <script src="js/highlight.js"></script>
+</body>
+</html>

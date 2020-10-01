@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Authentication Settings - Hyper SDK</title>
+  <link rel="stylesheet" href="css/bulma.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section class="hero is-bold is-primary">
+    <div class="hero-body">
+      <h1 class="title">Authentication Settings</h1>
+    </div>
+  </section>
+  <form name="auth" class="container mt-5">
+    <div class="field is-horizontal">
+      <div class="field-label">
+        <label class="label">Auto Login</label>
+      </div>
+      <div class="field-body">
+        <div class="control">
+          <label class="radio">
+            <input type="radio" name="autoLogin" checked>
+            Yes (default)
+          </label>
+          <label class="radio">
+            <input type="radio" name="autoLogin">
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="field is-horizontal mt-6">
+      <div class="field-label">
+        <label class="label">Authentication Mode</label>
+      </div>
+      <div class="field-body">
+        <div class="control">
+          <div class="select">
+            <select name="authMode">
+              <option>mstrHyper.AUTH_MODES.GUEST</option>
+              <option>mstrHyper.AUTH_MODES.STANDARD</option>
+              <option>mstrHyper.AUTH_MODES.INTEGRATED</option>
+              <option>mstrHyper.AUTH_MODES.LDAP</option>
+              <option>mstrHyper.AUTH_MODES.OIDC</option>
+              <option>mstrHyper.AUTH_MODES.SAML</option>
+              <option>mstrHyper.AUTH_MODES.TRUSTED</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field is-horizontal mt-6">
+      <div class="field-label">
+        <label class="label">Credentials</label>
+      </div>
+      <div class="field-body">
+        <div class="control">
+          <div class="field has-addons">
+            <div class="control">
+              <a class="button is-info">Username</a>
+            </div>
+            <div class="control">
+              <input class="input" name="username" type="url" placeholder="Username...">
+            </div>
+            <div class="control ml-3">
+              <a class="button is-info">password</a>
+            </div>
+            <div class="control">
+              <input class="input" name="password" type="url" placeholder="Password...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field is-horizontal">
+      <div class="field-label">
+        <label class="label">Or</label>
+      </div>
+      <div class="field-body">
+        <div class="control">
+          <div class="field has-addons">
+            <div class="control">
+              <a class="button is-info">Auth Token</a>
+            </div>
+            <div class="control">
+              <input class="input" name="authToken" type="url" placeholder="Auth Token...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <figure class="highlight mt-6">
+    <div class="buttons has-addons">
+      <button class="button is-small copy">Copy</button>
+      <a href="preview.html" class="button is-small">Preview</a>
+    </div>
+    <pre>
+      <code class="language-html load-main-js" data-lang="html"></code>
+      <code class="language-html hyper-start" data-lang="html" data-tmpl="call-start"></code>
+    </pre>
+  </figure>
+  <script src="js/lib.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
