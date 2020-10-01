@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enable / Disable Cards - Hyper SDK</title>
+    <link rel="stylesheet" href="css/bulma.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="hero is-bold is-link">
+      <div class="hero-body">
+        <h1 class="title">Enable / Disable Cards</h1>
+        <h2 class="subtitle">
+          Enable selected cards during initialization, or call APIs to
+          enable/disable cards at any time.
+        </h2>
+      </div>
+    </section>
+    <form name="form">
+      <section class="section is-fullwidth">
+        <h1 class="title is-4">
+          Option 1: specify the cards to enable in <code>mstrHyper.start</code>
+        </h1>
+        <div class="accordion">
+          <div class="accordion-head is-unselectable">
+            Enable cards during initialization
+          </div>
+          <div class="accordion-body">
+            <div class="field">
+              <p class="my-4 mb-3">
+                By default, Hyper SDK enables all the Hyper Cards that are
+                available to the end-user. If you want to enable a selected list
+                of Hyper Cards, you can list them in the initialization
+                settings.
+              </p>
+              <div class="control">
+                <textarea
+                  class="input is-info"
+                  style="height: 23rem"
+                  name="cards"
+                  placeholder="Enter Cards..."
+                ></textarea>
+              </div>
+            </div>
+            <figure class="highlight">
+              <div class="buttons has-addons mb-0">
+                <button class="button is-small mb-0 copy">Copy</button>
+                <a class="button is-small mb-0" href="preview.html">Preview</a>
+              </div>
+              <pre><code class="language-html hyper-start" data-lang="html"></code></pre>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="section is-fullwidth">
+        <h1 class="title is-4">Option 2: call enable/disable cards APIs</h1>
+        <h2 class="subtitle mt-4 mb-2">Enable Cards API</h2>
+        <p>
+          After the Hyper SDK is initialized, you may enable any cards at any
+          time with the <code>mstrHyper.enableCards</code> API.
+        </p>
+        <figure class="highlight">
+          <div class="buttons has-addons mb-0">
+            <button class="button is-small mb-0 copy">Copy</button>
+          </div>
+          <pre><code class="language-html" data-lang="html">mstrHyper.enableCards([{
+  name: 'Companies',
+  id: '51CBD67C11E9E92900000080EF25C5C7',
+  projectId: 'EC70648611E7A2F962E90080EFD58751'
+}]);</code></pre>
+        </figure>
+        <h2 class="subtitle mt-4 mb-2">Disable Cards API</h2>
+        <p>
+          After the Hyper SDK is initialized, you may disable any cards at any
+          time by calling the <code>mstrHyper.disableCards</code> API.
+        </p>
+        <figure class="highlight">
+          <div class="buttons has-addons mb-0">
+            <button class="button is-small mb-0 copy">Copy</button>
+          </div>
+          <pre><code class="language-html" data-lang="html">mstrHyper.disableCards([{
+  name: 'Companies',
+  id: '51CBD67C11E9E92900000080EF25C5C7',
+  projectId: 'EC70648611E7A2F962E90080EFD58751'
+}]);</code></pre>
+        </figure>
+      </section>
+    </form>
+    <script src="js/lib.js"></script>
+    <script src="js/enable-disable-cards.js"></script>
+  </body>
+</html>
