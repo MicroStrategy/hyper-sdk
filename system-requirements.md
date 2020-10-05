@@ -1,13 +1,13 @@
-## Prerequisites for Using HyperSDK
+## Prerequisites for Using HyperIntelligence SDK
 
-The following prerequisites must be met to use HyperSDK.
+The following prerequisites must be met to use HyperIntelligence SDK.
 
 ### System Requirements
-The HyperSDK is currently hosted on MicroStrategy SaaS HyperIntelligence Service deployments. You will need to have your application integrated with the HyperSDK and connecting to a HyperIntelligence Service instance in order to consume HyperIntelligence Cards.
+The HyperIntelligence SDK is currently hosted on MicroStrategy SaaS HyperIntelligence Service deployments. You will need to have your application integrated with the HyperIntelligence SDK and connecting to a HyperIntelligence Service instance in order to consume HyperIntelligence Cards.
 
 ### Supported Authentication
 
-Currently, HyperSDK supports:
+Currently, HyperIntelligence SDK supports:
 - OIDC
 - Guest
 - Standard
@@ -20,5 +20,4 @@ Currently, HyperSDK supports:
 | Google Chrome               | v80.0+                 |
 | Mozilla Firefox             | v79.0+                 |
 | Apple Safari                | v12.0+                 |
-| Microsoft Edge (Chromium)   | v80.0+                 |
-* For Safari and Firefox, the `Copy Card` function is not available.
+| Microsoft Edge              | v80.0+                 |

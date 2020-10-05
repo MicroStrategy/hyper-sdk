@@ -1,126 +1,102 @@
-## Classes
-
-<dl>
-<dt><a href="#mstrHyper">mstrHyper</a></dt>
-<dd><p>The entry class of Hyper SDK</p>
-</dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#exportLogs">exportLogs()</a> ⇒ <code>string</code></dt>
-<dd><p>Export logs</p>
-</dd>
-</dl>
-
-## Typedefs
-
-<dl>
-<dt><a href="#onSessionError">onSessionError</a> : <code>function</code></dt>
-<dd></dd>
-</dl>
-
 <a name="mstrHyper"></a>
 
 ## mstrHyper
-The entry class of Hyper SDK
+HyperIntelligence SDK entrypoint class.
 
 **Kind**: global class  
 
-- [Classes](#classes)
-- [Functions](#functions)
-- [Typedefs](#typedefs)
 - [mstrHyper](#mstrhyper)
   - [mstrHyper.start(options)](#mstrhyperstartoptions)
+  - [mstrHyper.init(options)](#mstrhyperinitoptions)
   - [mstrHyper.login(authOptions)](#mstrhyperloginauthoptions)
   - [mstrHyper.isLoggedIn() ⇒ <code>boolean</code>](#mstrhyperisloggedin--boolean)
-  - [mstrHyper.enableCards(options)](#mstrhyperenablecardsoptions)
-  - [mstrHyper.disableCards([options])](#mstrhyperdisablecardsoptions)
-- [exportLogs() ⇒ <code>string</code>](#exportlogs--string)
-- [onSessionError : <code>function</code>](#onsessionerror--function)
+  - [mstrHyper.exportLogs() ⇒ <code>string</code>](#mstrhyperexportlogs--string)
+  - [mstrHyper.enableCards(cards)](#mstrhyperenablecardscards)
+  - [mstrHyper.disableCards(cards)](#mstrhyperdisablecardscards)
 
 <a name="mstrHyper.start"></a>
 
 ### mstrHyper.start(options)
-Starting the mstrHyper App allows users to start configuring the SDK's settings. This includes logging into the application, configuring which cards to enable, and setting the server url, baseURI and highlight options
+Start the hyper sdk with configurations. It will init the hyper sdk, and login user with the auth options, then enable cards specified in the configurations, if not specified, it will enable all the certified cards or owned cards by default.
 
 **Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| options | <code>object</code> |  | a configuration object configuring the mstrHyper App |
-| [options.auth] | <code>object</code> | <code>{}</code> | authentication options |
-| [options.auth.authMode] | <code>number</code> |  | authentication mode |
+| options | <code>object</code> |  | an configuration object configuring the mstrHyper App |
+| [options.server] | <code>string</code> |  | server url, for example https://demo.microstrategy.com/MicroStrategyLibrary |
+| [options.auth.authMode] | <code>mstrHyper.AUTH\_MODES</code> |  | authentication mode |
 | [options.auth.username] | <code>string</code> |  | username |
 | [options.auth.password] | <code>string</code> |  | password |
 | [options.auth.authToken] | <code>string</code> |  | authtoken |
+| [options.auth.onSessionError] | <code>function</code> |  | a callback function that be used to handle session error and recover session |
 | [options.cards] | <code>Array</code> |  | a list of cards to be enabled when using SDK |
-| [options.onSessionError] | [<code>onSessionError</code>](#onSessionError) |  | a callback function that be used to recover session |
-| [options.logLevel] | <code>string</code> | <code>&quot;&#x27;error&#x27;&quot;</code> | logLevel ["error", "warn", "info"] |
-| [options.highlightType] | <code>string</code> | <code>&quot;&#x27;overlay&#x27;&quot;</code> | highlightType ["insertion", "overlay"] |
-| [options.highlightIframes] | <code>string</code> | <code>true</code> | whether to highlight iframe |
+| [options.logLevel] | <code>mstrHyper.LOG\_LEVELS</code> | <code>&#x27;error&#x27;</code> | logLevel ["error", "warn", "info"] |
+| [options.highlighting.highlightIframes] | <code>boolean</code> | <code>true</code> | whether to highlight iframes |
+
+<a name="mstrHyper.init"></a>
+
+### mstrHyper.init(options)
+Init the hyper sdk with configurations
+
+**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| options | <code>object</code> |  | an configuration object configuring the mstrHyper App |
+| [options.server] | <code>string</code> |  | server url, for example https://demo.microstrategy.com/MicroStrategyLibrary |
+| [options.logLevel] | <code>mstrHyper.LOG\_LEVELS</code> | <code>&#x27;error&#x27;</code> | logLevel ["error", "warn", "info"] |
+| [options.highlighting.highlightIframes] | <code>boolean</code> | <code>true</code> | whether to highlight iframes |
 
 <a name="mstrHyper.login"></a>
 
 ### mstrHyper.login(authOptions)
-Login to get a valid authToken
+Login to get valid authToken
 
 **Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | authOptions | <code>object</code> | authentication options |
-| [authOptions.authMode] | <code>number</code> | authentication mode |
+| [authOptions.authMode] | <code>mstrHyper.AUTH\_MODES</code> | authentication mode: OIDC|STANDARD|GUEST |
 | [authOptions.username] | <code>string</code> | username |
 | [authOptions.password] | <code>string</code> | password |
 | [authOptions.authToken] | <code>string</code> | authtoken |
+| [authOptions.onSessionError] | <code>function</code> | a callback function that be used to handle session error and recover session during enableCards or hovering card |
 
 <a name="mstrHyper.isLoggedIn"></a>
 
 ### mstrHyper.isLoggedIn() ⇒ <code>boolean</code>
-Checking whether the user is logged in
+Checking whether the SDK has been logged in
 
 **Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
-**Returns**: <code>boolean</code> - value to indicate whether the user logged in  
-<a name="mstrHyper.enableCards"></a>
+**Returns**: <code>boolean</code> - indicate whether the SDK has logged in  
+<a name="mstrHyper.exportLogs"></a>
 
-### mstrHyper.enableCards(options)
-Choose a specific set of cards to enable
-
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| options | <code>object</code> |  | options to enables a list of cards |
-| options.cards | <code>Array</code> |  | a list of cards to be enabled [{id: string, projectId: string}] |
-| [options.fetchLatest] | <code>boolean</code> | <code>false</code> | boolean value specify whether or not to fetch the latest cardlist and card data from the server. |
-
-<a name="mstrHyper.disableCards"></a>
-
-### mstrHyper.disableCards([options])
-Choose a specific set of cards to disable
-
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [options] | <code>object</code> | <code>{}</code> | options to disable a list of cards |
-| options.cards | <code>Array</code> |  | a list of cards to be disabled |
-
-<a name="exportLogs"></a>
-
-## exportLogs() ⇒ <code>string</code>
+### mstrHyper.exportLogs() ⇒ <code>string</code>
 Export logs
 
-**Kind**: global function  
-**Returns**: <code>string</code> - a string containing all the logs  
-<a name="onSessionError"></a>
+**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
+**Returns**: <code>string</code> - a string contains all the logs  
+<a name="mstrHyper.enableCards"></a>
 
-## onSessionError : <code>function</code>
-**Kind**: global typedef  
+### mstrHyper.enableCards(cards)
+Enable a list of cards
+
+**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| sessionError | <code>object</code> | session error object |
+| cards | <code>Array</code> | a list of cards to be enabled in an array [{id: string, projectId: string}] |
+
+<a name="mstrHyper.disableCards"></a>
+
+### mstrHyper.disableCards(cards)
+Disable a list of cards
+
+**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cards | <code>Array</code> | a list of cards to be disabled |
 

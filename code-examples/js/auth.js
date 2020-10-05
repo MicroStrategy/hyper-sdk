@@ -1,18 +1,3 @@
-const initAutoLogin = (s) => {
-  const autoLogin = s.autoLogin() !== 'false';
-  const [yes, no] = document.auth.autoLogin;
-  yes.checked = autoLogin;
-  no.checked = !autoLogin;
-
-  yes.addEventListener('change', () => {
-    s.autoLogin('true');
-  });
-
-  no.addEventListener('change', () => {
-    s.autoLogin('false');
-  });
-};
-
 const initAuthMode = (s) => {
   const authMode = s.authMode();
   const select = document.auth.authMode;
@@ -22,10 +7,16 @@ const initAuthMode = (s) => {
       break;
     }
   }
-
-  select.addEventListener('change', () => {
+  const setAuthMode = () => {
     s.authMode(select.value);
-  });
+    const isBasicAuth = select.value.endsWith('.STANDARD');
+    Array.from(document.querySelectorAll('.credential')).forEach((it) =>
+      it.classList.toggle('is-hidden', !isBasicAuth),
+    );
+  };
+
+  setAuthMode();
+  select.addEventListener('change', setAuthMode);
 };
 
 const initCredentials = (s) => {
@@ -50,7 +41,6 @@ const initCredentials = (s) => {
 
 window.addEventListener('DOMContentLoaded', () => {
   const s = demo.storage;
-  initAutoLogin(s);
   initAuthMode(s);
   initCredentials(s);
 });

@@ -7,6 +7,25 @@ body {
   overflow: auto;
 }
 
+iframe {
+  border-style: none;
+  width: 100vw;
+  overflow: auto;
+}
+
+fieldset {
+  border: 1px solid #3399cc;
+  border-radius: 8px;
+  padding: 1rem 1rem 2rem;
+}
+
+fieldset > legend {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .section {
   margin: 3rem 1.5rem;
   padding: 0;
@@ -30,12 +49,6 @@ body {
 .header-nav-bar .navbar-link.is-active {
   background: #ffffff;
   color: #7f8c8d;
-}
-
-iframe {
-  border-style: none;
-  width: 100vw;
-  overflow: auto;
 }
 
 .highlight {

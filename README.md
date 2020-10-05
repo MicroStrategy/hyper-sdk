@@ -1,22 +1,26 @@
-# MicroStrategy HyperSDK
+# MicroStrategy HyperIntelligence SDK
 
 
 - [System Requirements](system-requirements.md)
 - [Configuration and Customization](config)
-  * [Initialize Hyper SDK](config/README.md#initialize-hyper-sdk)
+  * [Initialize HyperIntelligence SDK](config/README.md#initialize-hyper-sdk)
   * [Authentication Configurations](config/README.md#authentication-configurations)
   * [Enable and Disable Cards](config/README.md#enable-and-disable-cards)
   * [Highlight Settings](config/README.md#highlight-settings)
   * [Error Handling](config/README.md#error-handling)
 - [Application Integration Samples](samples)
-  * [Integrate HyperSDK to websites](samples#integrate-hypersdk-to-a-website)
-  * [MicroStrategy Web Plugin](samples#integrating-hypersdk-to-microstrategy-web-via-a-plugin)
+  * [Integrate HyperIntelligence SDK to a website](samples#integrate-hyperIntelligence-sdk-to-a-website)
+  * [Integrate HyperIntelligence SDK to Sharepoint pages](samples#integrate-hyperIntelligence-sdk-to-sharepoint-pages)
+  * [Integrate HyperIntelligence SDK to Salesforce pages](samples#integrate-hyperIntelligence-sdk-to-salesforce-pages)
+  * [Working together with MicroStrategy Embedding SDK](samples#working-together-with-microStrategy-embedding-sdk)
+  * [Integrate HyperIntelligence SDK to MicroStrategy Web via a plugin](samples#integrate-hyperIntelligence-sdk-to-microstrategy-web-via-a-plugin)
 - [Frequently Asked Questions](faq.md)
 - [API Doc](api.md)
+- [Code Examples](https://microstrategy.github.io/hyper-sdk/code-examples/)
 
 ## Introduction to HyperIntelligence
 
-HyperIntelligence was introduced in MicroStrategy 2019 as a new addition to MicroStrategy Workstation and allows analysts to create objects called cards.
+[HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence) was introduced in MicroStrategy 2019 as a new addition to MicroStrategy Workstation and allows analysts to create objects called Cards.
 
 Cards are visual representations of your data. In a card, you can create lists, matrix grids, ring charts, or text boxes to display your data in a quick and concise manner. By using an attribute from your data to serve as the keyword attribute, that attribute will then identify the elements that will trigger a card to appear.
 
@@ -24,16 +28,16 @@ After creating cards in Workstation, analysts can deploy their cards to a user's
 
 ![hyper-card-sample.png](img/hyper-card-sample.png)
 
-## What is HyperSDK
+## What is HyperIntelligence SDK
 
-HyperSDK is a JavaScript SDK that allows you to quickly add HyperIntelligence to your own websites. Most HyperIntelligence features are supported in the SDK, such as finding and highlighting keywords on web pages, showing Hyper Cards when hovering a highlighted keyword, and the ability to copy &amp; share cards.
+HyperIntelligence SDK is a JavaScript SDK that allows you to quickly add [HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence) to your own websites. Most HyperIntelligence features are supported in the SDK, such as finding and highlighting keywords on web pages, showing Hyper Cards when hovering a highlighted keyword, and the ability to copy &amp; share cards.
 
-The HyperSDK is comprised of a few JavaScript and stylesheet files, as well as a handful of images and fonts.
+The HyperIntelligence SDK is comprised of a few JavaScript and stylesheet files, as well as a handful of images and fonts.
 
 ![hyper-sdk-arch.png](img/hyper-sdk-arch.png)
 
 To enable HyperIntelligence with the SDK on your web page, 
-you will need to configure HyperSDK to connect to a HyperIntelligence Service instance where HyperSDK is hosted in order to consume HyperIntelligence Cards.
+you will need to configure HyperIntelligence SDK to connect to a HyperIntelligence Service instance where HyperIntelligence SDK is hosted in order to consume HyperIntelligence Cards.
 
 Upon calling `start()` function, it will proceed to scan and highlight matched DOM elements on the web page.
 
