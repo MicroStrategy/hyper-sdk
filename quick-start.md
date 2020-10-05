@@ -1,6 +1,6 @@
 # Quick Start
 
-To start using Hyper SDK, see the basic workflow below:
+To start using HyperIntelligence SDK, see the basic workflow below:
 
 ---
 **Prerequisites**
@@ -20,7 +20,6 @@ In your website or application, add this HTML code snippet to your web pages:
       .start({
         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
         auth: {
-          autoLogin: true,
           authMode: mstrHyper.AUTH_MODES.GUEST
         }
       })

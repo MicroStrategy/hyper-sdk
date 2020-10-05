@@ -1,3 +1,3 @@
-# What's new in Hyper SDK
+# What's new in HyperIntelligence SDK
 
 Change log
