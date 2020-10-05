@@ -47,7 +47,7 @@ HyperIntelligence SDK needs to connect to a MicroStrategy Library Server to work
 </script>
 ```
 
-### Working together with  MicroStrategy Embedding SDK
+### Working together with MicroStrategy Embedding SDK
 A typical usecase of HyperIntelligence SDK is to work together with [Embedding SDK](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/EmbeddingSDK/Content/topics/Intro_to_the_Embedding_SDK.htm), here's an example of the code:
 
 ``` html
