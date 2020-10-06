@@ -1,7 +1,7 @@
 window.demo = ((win, doc) => {
     let refresh;
     const readOrWrite = (key, value, defaultValue = '') => {
-        const k = `HyperIntelligence SDK.${key}`;
+        const k = `HyperSDK.${key}`;
 
         if (value !== undefined) {
             if (typeof value === 'string') {
@@ -259,10 +259,10 @@ window.demo = ((win, doc) => {
         await raiseHTTPError(url, isValidServer, 'Server is not reachable.');
 
         const sdk = buildURL(url, '/static/hyper/sdk/js/mstr_hyper.bundle.js');
-        const hasHyperIntelligence SDK = await fetch(sdk, options);
+        const hasHyperSDK = await fetch(sdk, options);
         await raiseHTTPError(
             sdk,
-            hasHyperIntelligence SDK,
+            hasHyperSDK,
             'HyperIntelligence SDK resources were not found on server.',
         );
     };
