@@ -47,6 +47,10 @@ For HyperIntelligence SDK to work, it needs to connect to the MicroStrategy Libr
 </script>
 ```
 
+>Please replace Library server url with your MCI instance url.
+e.g. *https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary*
+Regarding how to create a HyperIntelligence Service instance, please refer to [HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence).
+
 For more information about the `mstrHyper.start()`, check [the API documents](../api.md).
 
 > Both of the main HyperIntelligence SDK JavaScript bundle and the code snippet above must be added to ALL of the web pages that you want HyperIntelligence to be enabled.
