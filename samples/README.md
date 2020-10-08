@@ -18,6 +18,7 @@ src="https://demo.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk/js/mst
 ```
 >Please replace Library server url with your MCI instance url.
 e.g. *https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary*
+Regarding how to create a HyperIntelligence Service instance, please refer to [HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence).
 
 When you have the URL to HyperIntelligence SDK, determine the URL to the main JavaScript bundle file.
 
