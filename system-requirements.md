@@ -45,7 +45,7 @@ To enable CORS for the REST Server:
 
 2. Navigate to Library Server -> Security Settings.
 3. Choose the appropriate setting for Allow Library embedding in other sites to reconfigure CORS.
-![picture 1](images/232a5ba2f3868233c8659908cacf6c9710087345e3b250c7912fbb2489c44e55.png)  
+![picture 1](img/CORS_config.png)  
 
 
 
