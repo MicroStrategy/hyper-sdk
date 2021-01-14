@@ -68,7 +68,10 @@ window.demo = ((win, doc) => {
   const getStartScript = () => {
     let authMode = storage.authMode();
     const isBasic = authMode && authMode.toLowerCase().endsWith('standard');
-    if (!authMode) authMode = `authMode: '${authMode}',`;
+    if (authMode)
+      authMode = authMode.startsWith('mstrHyper.AUTH_MODES.')
+        ? `authMode: ${authMode},`
+        : `authMode: '${authMode}',`;
 
     let username = storage.username();
     if (username) username = `username: '${username.replace(/'/g, "\\'")}',`;
