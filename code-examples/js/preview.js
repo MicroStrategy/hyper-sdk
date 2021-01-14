@@ -67,7 +67,7 @@ const init = async () => {
   return mstrHyper.start({
     server,
     auth: {
-      authMode,
+      authMode: authMode,
       username: authToken ? null : username,
       password: authToken ? null : password,
       authToken,
