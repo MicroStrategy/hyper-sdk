@@ -1,6 +1,6 @@
 # Quick Start
 
-To start using HyperIntelligence SDK, see the basic workflow below:
+To start using Hyper SDK, see the basic workflow below:
 
 ---
 **Prerequisites**

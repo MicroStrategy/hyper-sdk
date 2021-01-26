@@ -1,19 +1,19 @@
-## Prerequisites for Using HyperIntelligence SDK
+## Prerequisites for Using Hyper SDK
 
-The following prerequisites must be met to use HyperIntelligence SDK.
+The following prerequisites must be met to use Hyper SDK.
 
 ### System Requirements
-The HyperIntelligence SDK leverages [MicroStrategy REST API](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/RESTSDK/Content/topics/REST_API/REST_API.htm) and is currently hosted with MicroStrategy Library server instance. You will need to have your application integrated with the HyperIntelligence SDK and connected to a MicroStrategy Library server instance in order to consume HyperIntelligence Cards.
+The Hyper SDK leverages [MicroStrategy REST API](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/RESTSDK/Content/topics/REST_API/REST_API.htm) and is currently hosted with MicroStrategy Library server instance. You will need to have your application integrated with the Hyper SDK and connected to a MicroStrategy Library server instance in order to consume HyperIntelligence Cards.
 
 **Platform Version Support:**
-- [MicroStrategy Platform Analytics](https://www2.microstrategy.com/producthelp/current/InstallConfig/en-us/Content/platform_analytics.htm) : MicroStrategy 2021 GA and above.
+- [MicroStrategy 2021](https://community.microstrategy.com/s/products) 
 
 - [Hyper.Now](https://www.microstrategy.com/en/hyperintelligence): SaaS offering, always up to date.
 
 
 ### Supported Authentication
 
-Currently, HyperIntelligence SDK supports:
+Currently, Hyper SDK supports:
 - OIDC
 - Guest
 - Standard
@@ -31,7 +31,7 @@ Currently, HyperIntelligence SDK supports:
 ## Other Prerequisites
 ### Enable Cross-Origin Resource Sharing (CORS)
 ```
-Not required for Hyper.Now
+Note: It is not required to enable CORS for Hyper.Now (SaaS) environments as it is already enabled on its Library Server.
 ```
 Cross-Origin Resource Sharing (CORS) provides a way for a web application running in one origin (domain, protocol, and port) to access selected resources from a server in a different origin. A cross-origin HTTP request uses additional HTTP headers to tell the browser to let the web application share resources. For security reasons, browsers restrict cross-origin HTTP requests initiated from within scripts. This means that when a web application requests HTTP resources from a different origin, the response from the other origin must include the right CORS headers.
 
@@ -62,7 +62,7 @@ Using the Library Admin page is the easiest way to enable CORS for the REST Serv
 
 ### SameSite
 ```
-Not required for Hyper.Now
+Note: It is not required to set SameSite for Hyper.Now (SaaS) environments as it is already set to `None` on its Library Server.
 ```
 Chrome(version 80+) and Edge(version 86+) Web Browser introduce new changes which may impact embedding. 
 
