@@ -8,7 +8,7 @@ The Hyper SDK leverages [MicroStrategy REST API](https://lw.microstrategy.com/ms
 **Platform Version Support:**
 - [MicroStrategy 2021](https://community.microstrategy.com/s/products) 
 
-- [Hyper.Now](https://www.microstrategy.com/en/hyperintelligence): SaaS offering, always up to date.
+- [Hyper.Now](https://www.microstrategy.com/en/hyperintelligence)
 
 
 ### Supported Authentication
