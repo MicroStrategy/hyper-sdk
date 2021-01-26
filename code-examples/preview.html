@@ -1,43 +1,126 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Preview - HyperIntelligence SDK</title>
+    <title>Preview - Hyper SDK</title>
     <link rel="stylesheet" href="css/bulma.css" />
     <link rel="stylesheet" href="css/index.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      #IFrame iframe[id*="kpi_card"] {
+        position: relative !important;
+        width: 382px;
+        height: 720px;
+      }
+      #IFrame {
+        display: none;
+        width: 400px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+      }
 
-<body class="preview">
+      .wrapper-class {
+        display: flex;
+      }
+
+      .open-close-container {
+        display: flex;
+        justify-content: space-around;
+        width: 600px;
+      }
+
+      .main-content {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body class="preview">
     <button class="button is-small top-right-2" id="go-back">Go Back</button>
-    <section class="hero is-bold is-info">
-        <div class="hero-body">
-            <h1 class="title">HyperIntelligence SDK Live Preview</h1>
-        </div>
-    </section>
-    <section class="section is-fullwidth accordion">
-        <div class="accordion-head is-unselectable">Your configuration</div>
-        <figure class="highlight accordion-body">
+    <div class="wrapper-class">
+      <div class="main-content">
+        <section class="hero is-bold is-info">
+          <div class="hero-body">
+            <h1 class="title">Hyper SDK Live Preview</h1>
+          </div>
+        </section>
+        <section class="section is-fullwidth accordion">
+          <div class="accordion-head is-unselectable">Your configuration</div>
+          <figure class="highlight accordion-body">
             <div class="buttons has-addons mb-0">
-                <button class="button is-small mb-0 copy">Copy</button>
+              <button class="button is-small mb-0 copy">Copy</button>
             </div>
             <pre><code class="language-html load-main-js" data-lang="html"></code><code class="language-html hyper-start" data-lang="html" data-tmpl="call-start"></code></pre>
-        </figure>
-    </section>
-    <section class="section is-fullwidth">
-        <section class="hero is-small" id="hyper-init-status">
-            <div class="hero-body">
-                <p></p>
-            </div>
+          </figure>
         </section>
-    </section>
-    <section class="section is-fullwidth is-relative mx-6">
-        <button id="edit" title="Edit the page" type="button" class="button is-small top-right-2">
-        Edit
-      </button>
-        <div>
+        <section class="section is-fullwidth">
+          <section class="hero is-small" id="hyper-init-status">
+            <div class="hero-body">
+              <p></p>
+            </div>
+          </section>
+        </section>
+        <section class="section is-fullwidth">
+          <h2 class="title is-3">Search API</h2>
+          <div class="field has-addons mt-4">
+            <div class="control is-expanded">
+              <input
+                type="text"
+                class="input"
+                id="searchTerm"
+                placeholder="Search Keyword..."
+              />
+            </div>
+            <div class="control">
+              <button class="button is-info" onclick="searchKeyword()">
+                Search Keyword
+              </button>
+            </div>
+          </div>
+          <div class="open-close-container">
+            <div class="control">
+              <button class="button is-info" onclick="togglePanel(true)">
+                Open Cards Panel
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-info" onclick="togglePanel(false)">
+                Close Cards Panel
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-info" onclick="hideCard()">
+                Hide Card
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-info" onclick="showCard()">
+                Show Card
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- <section>
+          <div class="card">
+            <div id="IFrame" class="card-content">
+            </div>
+          </div>
+        </section> -->
+        <section class="section is-fullwidth is-relative mx-6">
+          <button
+            id="edit"
+            title="Edit the page"
+            type="button"
+            class="button is-small top-right-2"
+          >
+            Edit
+          </button>
+          <div>
             <p>3M</p>
             <p>A-Mark Precious Metals</p>
             <p>ABM Industries</p>
@@ -91,10 +174,13 @@
             <p>Arrow Electronics</p>
             <p>Arthur J. Gallagher</p>
             <p>Asbury Automotive Group</p>
-        </div>
-    </section>
+          </div>
+        </section>
+      </div>
+      <div id="IFrame" class="cards-wrapper" style="display: none;">
+      </div>
+    </div>
     <script src="js/lib.js"></script>
     <script src="js/preview.js"></script>
-</body>
-
+  </body>
 </html>

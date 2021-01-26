@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search - Hyper SDK</title>
+    <link rel="stylesheet" href="css/bulma.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <section class="hero is-bold is-warning">
+        <div class="hero-body">
+            <h1 class="title">Hyper Search</h1>
+            <h2 class="subtitle">Enable Hyper Search API to create and embed search workflows within web applications. The search API searches on keywords within a card-set.</h2>
+        </div>
+    </section>
+    <!-- <section class="section is-fullwidth">
+        <h2 class="title is-3">Demo Testing</h2>
+        <div class="field has-addons mt-4">
+            <div class="control">
+                <a class="button is-info">Set Keyword</a>
+            </div>
+            <div class="control is-expanded">
+                <input class="input" id="user-keyword" placeholder="Enter Keyword" />
+            </div>
+        </div>
+    </section> -->
+    <section class="section is-fullwidth">
+        <form name="auth" class="container mt-5">
+            <h2 class="title">
+                To enable Search API functionality:
+            </h2>
+        <fieldset>
+            <legend class="subtitle">
+            Option 1: Set <code>searchEnabled</code> in <code>mstrHyper.start</code> call to <code>true</code>
+            </legend>
+            <section class="section is-fullwidth">
+                <figure class="highlight mt-6">
+                    <div class="buttons has-addons mb-0">
+                        <button class="button is-small copy mb-0">Copy</button>
+                        <a class="button is-small mb-0" href="preview.html">Preview</a>
+                    </div>
+                    <pre><code class="language-html hyper-start" data-lang="html" data-tmpl="call-start"></code></pre>
+                </figure>
+            </section>
+        </fieldset>
+        <fieldset class="mt-6">
+        <legend class="subtitle">
+        Option 2: Call <code>mstrHyper.enableSearch()</code> on instantiated <code>mstrHyper</code> object with optional 
+        <code>options</code> object
+            </legend>
+            <p>
+                The <code>options</code> object can take one field <code>searching</code> which can contain the following: 
+                <code> options.searching.onSearch</code>, 
+                <code> options.searching.onSort</code>
+            </p>
+            <p>
+                <code> options.searching.onSearch(searchResults, searchId)</code> is a callback to handle search result chunks
+            </p>
+            <figure class="highlight">
+                <div class="buttons has-addons mb-0">
+                    <button class="button is-small mb-0 copy">Copy</button>
+                </div>
+                <pre><code class="language-html" data-lang="html">
+//Example onSearch callback which prints searchResults and searchId for each chunk
+const onSearch = (searchResults, searchId) => {
+    console.log('This is an example of a custom onSearch callback.')
+    console.log('searchResults :', searchResults, `searchId :`, searchId);
+};
+                </code></pre>
+            </figure>
+            <p>
+                <code> options.searching.onSort(sanitizedKeywords, sortingMap, searchId)</code> is a callback to handle an event that fires at the end of each searching query.
+            </p>
+            <figure class="highlight">
+                <div class="buttons has-addons mb-0">
+                    <button class="button is-small mb-0 copy">Copy</button>
+                </div>
+                <pre><code class="language-html" data-lang="html">
+//Example onSort callback which prints the sanitizedKeywords, sortingMap, and searchId once all search chunks are completed
+const onSort = (sanitizedKeywords, sortingMap, searchId) => {
+    console.log('This is an example of a custom onSort callback.')
+    console.log('sanitizedKeywords :', sanitizedKeywords
+    , 'sortingMap :', sortingMap
+    , 'searchId :', searchId);
+};
+                </code></pre>
+            </figure>
+            <figure class="highlight mt-6">
+                <div class="buttons has-addons mb-0">
+                    <button class="button is-small copy mb-0">Copy</button>
+                    <a class="button is-small mb-0" href="preview.html">Preview</a>
+                </div>
+                <pre><code class="language-html" data-lang="html">options.searching = {onSort, onSearch};</code></pre>
+            </figure>
+            <section class="section is-fullwidth">
+                <figure class="highlight mt-6">
+                    <div class="buttons has-addons mb-0">
+                        <button class="button is-small copy mb-0">Copy</button>
+                        <a class="button is-small mb-0" href="preview.html">Preview</a>
+                    </div>
+                    <pre><code class="language-html" data-lang="html">mstrHyper.enableSearch(options);</code></pre>
+                </figure>
+            </section>
+        </fieldset>
+        <h2 class="title">Requirements for Use</h2>
+            <p>
+                The Hyper Search functionality requires the use of UTF-8 encoding to function properly.
+            </p>
+            <p>
+                Please include <code><meta charset="utf-8" /></code> in your page to comply.
+            </p>
+        <h2 class="title">Execute Search queries</h2>
+            <p>
+                After the Search functionality is initialized, you may execute searches via <code>mstrHyper.searchKeyword</code> API. Note that this API is async.
+            </p>
+            <figure class="highlight">
+                <div class="buttons has-addons mb-0">
+                    <button class="button is-small mb-0 copy">Copy</button>
+                </div>
+                <pre><code class="language-html" data-lang="html">var {searchId, searchResults } = await mstrHyper.searchKeyword('3M');</code></pre>
+            </figure>
+            <p>
+                This API returns an object: <code>{ searchId, searchResults }</code>
+            </p>
+        <h2 class="title">Search Result Handling</h2>
+            <p>
+                There are two main ways you can handle the returned search results.  
+            </p>
+            <fieldset>
+                <legend class="subtitle">
+                    Option 1: Handle search results incrementally through custom callbacks (asynchronous)
+                </legend>
+                <p>
+                    The <code>searchId</code> can be used within the search callbacks passed in with <code>mstrHyper.start </code>or <code>mstrHyper.enableSearch</code> for custom handling of the search results and sort events.
+                </p>
+                <figure class="highlight">
+                    <div class="buttons has-addons mb-0">
+                        <button class="button is-small mb-0 copy">Copy</button>
+                    </div>
+                    <pre><code class="language-html" data-lang="html">
+//Example onSearch callback which prints searchResults and searchId for each chunk
+const onSearch = (searchResults, searchId) => {
+    console.log('This is an example of a custom onSearch callback.')
+    console.log('searchResults :', searchResults, `searchId :`, searchId);
+};
+
+//Example onSort callback which prints the sanitizedKeywords, sortingMap, and searchId once all search chunks are completed
+const onSort = (sanitizedKeywords, sortingMap, searchId) => {
+    console.log('This is an example of a custom onSort callback.')
+    console.log('sanitizedKeywords :', sanitizedKeywords
+    , 'sortingMap :', sortingMap
+    , 'searchId :', searchId);
+};
+
+let options = { searching : {onSort, onSearch} };
+mstrHyper.start(options);
+
+                    </code></pre>
+                </figure>
+            </fieldset>
+            <fieldset>
+                <legend class="subtitle">
+                    Option 2: Wait for all of the search results to be completed (synchronous)
+                </legend>
+                <p>
+                    The <code>searchResults</code> is an array of <code>promises</code> which resolves to the search results separated by chunks and cardsets. You can <code>await</code> for these results 
+                    to resolve and merge them instead of handling them through the callbacks.
+                </p>
+                <p>
+                    After getting the search results, you should merge the search results via <code>mstrHyper.mergeSearchResults</code> API. Note that this API is async.
+                </p>
+            <figure class="highlight">
+                <div class="buttons has-addons mb-0">
+                    <button class="button is-small mb-0 copy">Copy</button>
+                </div>
+                <pre><code class="language-html" data-lang="html">
+var {searchId, searchResults} = await mstrHyper.searchKeyword('3M');
+var mergedSearchResults = await mstrHyper.mergeSearchResults(searchResults);
+                </code></pre>
+            </figure>
+            </fieldset>
+            <h2 class="title">Rendering Cards</h2>
+            <p>
+                Rendering Hyper Cards can be done through the <code>mstrHyper.showCard</code> API.
+            </p>
+            <p>
+                Simply pass on an object containing <code>cardUID</code> and <code>elementId</code> from the search results as well as <code>nodeToRenderTo</code>, the node you would like the card rendered to.
+            </p>
+            <figure class="highlight">
+                <div class="buttons has-addons mb-0">
+                    <button class="button is-small mb-0 copy">Copy</button>
+                </div>
+                <pre><code class="language-html" data-lang="html">
+mstrHyper.showCard({cardUID, elementId, nodeToRenderTo});
+</code></pre>
+            </figure>
+            <p>
+                To ensure that the card fits properly inside of your node, make sure to set styles.
+            </p>
+            <figure class="highlight">
+                <div class="buttons has-addons mb-0">
+                    <button class="button is-small mb-0 copy">Copy</button>
+                </div>
+                <pre><code class="language-html" data-lang="html">
+<style>
+    #IFrame iframe[id*="kpi_card"] {
+        position: relative !important;
+        width: 382px;
+        height: 720px;
+    }
+    #IFrame {
+        display: none;
+        width: 400px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+<div id="IFrame" style="display: none;">
+</div>
+                </code></pre>
+            </figure>
+            <p>
+                To hide the card, pass on an object containing <code>nodeToRenderTo</code>, the node that the card is rendered in.
+            </p>
+            <figure class="highlight">
+                <div class="buttons has-addons mb-0">
+                    <button class="button is-small mb-0 copy">Copy</button>
+                </div>
+                <pre><code class="language-html" data-lang="html">
+mstrHyper.hideCard({nodeToRenderTo});
+</code></pre>
+            </figure>
+        </form>
+    </section>
+</body>
+<script src="js/lib.js"></script>
+<script src="js/search.js"></script>
+</html>

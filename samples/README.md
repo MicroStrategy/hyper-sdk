@@ -1,16 +1,16 @@
 # Application Integration Samples
 
-  * [Integrate HyperIntelligence SDK to a website](#integrate-hyperIntelligence-sdk-to-a-website)
-  * [Integrate HyperIntelligence SDK to Sharepoint pages](#integrate-hyperIntelligence-sdk-to-sharepoint-pages)
-  * [Integrate HyperIntelligence SDK to Salesforce pages](#integrate-hyperIntelligence-sdk-to-salesforce-pages)
+  * [Integrate Hyper SDK to a website](#integrate-hyperIntelligence-sdk-to-a-website)
+  * [Integrate Hyper SDK to Sharepoint pages](#integrate-hyperIntelligence-sdk-to-sharepoint-pages)
+  * [Integrate Hyper SDK to Salesforce pages](#integrate-hyperIntelligence-sdk-to-salesforce-pages)
   * [Working together with MicroStrategy Embedding SDK](#working-together-with-microStrategy-embedding-sdk)
-  * [Integrate HyperIntelligence SDK to MicroStrategy Web via a plugin](#integrate-hyperIntelligence-sdk-to-microstrategy-web-via-a-plugin)
+  * [Integrate Hyper SDK to MicroStrategy Web via a plugin](#integrate-hyperIntelligence-sdk-to-microstrategy-web-via-a-plugin)
 
-## Integrate HyperIntelligence SDK to a website
+## Integrate Hyper SDK to a website
 
-HyperIntelligence SDK can be integrated to any website so that users can interact with HyperIntelligence cards. In order to integrate HyperIntelligence SDK to a website, the following instructions should be followed.
+Hyper SDK can be integrated to any website so that users can interact with HyperIntelligence cards. In order to integrate Hyper SDK to a website, the following instructions should be followed.
 
-### 1. Load HyperIntelligence SDK on your web pages
+### 1. Load Hyper SDK on your web pages
 ```html
 <script type="text/javascript" 
 src="https://demo.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk/js/mstr_hyper.bundle.js">
@@ -20,13 +20,13 @@ src="https://demo.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk/js/mst
 e.g. *https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary*
 Regarding how to create a HyperIntelligence Service instance, please refer to [HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence).
 
-When you have the URL to HyperIntelligence SDK, determine the URL to the main JavaScript bundle file.
+When you have the URL to Hyper SDK, determine the URL to the main JavaScript bundle file.
 
-> You can get the URL to the main JavaScript bundle by appending `/js/mstr_hyper.bundle.js` to the URL of HyperIntelligence SDK. E.g. if the URL to your copy of HyperIntelligence SDK is https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk, the URL to the main JavaScript bundle is https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk/js/mstr_hyper.bundle.js
+> You can get the URL to the main JavaScript bundle by appending `/js/mstr_hyper.bundle.js` to the URL of Hyper SDK. E.g. if the URL to your copy of Hyper SDK is https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk, the URL to the main JavaScript bundle is https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk/js/mstr_hyper.bundle.js
 
-### 2. Initialize HyperIntelligence SDK
+### 2. Initialize Hyper SDK
 
-HyperIntelligence SDK needs to connect to a MicroStrategy Library Server to work. After HyperIntelligence SDK is added to your web page, initialize HyperIntelligence SDK by calling mstrHyper.start function like the following code snippet:
+Hyper SDK needs to connect to a MicroStrategy Library Server to work. After Hyper SDK is added to your web page, initialize Hyper SDK by calling mstrHyper.start function like the following code snippet:
 
 ```html
 <script>
@@ -49,14 +49,14 @@ HyperIntelligence SDK needs to connect to a MicroStrategy Library Server to work
 ```
 
 ### Working together with MicroStrategy Embedding SDK
-A typical usecase of HyperIntelligence SDK is to work together with [Embedding SDK](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/EmbeddingSDK/Content/topics/Intro_to_the_Embedding_SDK.htm), here's an example of the code:
+A typical usecase of Hyper SDK is to work together with [Embedding SDK](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/EmbeddingSDK/Content/topics/Intro_to_the_Embedding_SDK.htm), here's an example of the code:
 
 ``` html
 <!DOCTYPE html>
 <html>
 
 <head>
-  <title>HyperIntelligence SDK Demo</title>
+  <title>Hyper SDK Demo</title>
 </head>
 
 <body>
@@ -113,7 +113,7 @@ A typical usecase of HyperIntelligence SDK is to work together with [Embedding S
 
 
 
-## Integrate HyperIntelligence SDK to Sharepoint pages
+## Integrate Hyper SDK to Sharepoint pages
 [Microsoft SharePoint](https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration) allows users to create websites with the use of multiple templates and SharePoint web parts, which incredibly expand the basic functionality.
 >For more details please refer to [SharePoint Documentation](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/overview-client-side-web-parts).
 >For code examples please refer to [SharePoint Framework Client-Side Web Part Samples & Tutorial Materials
@@ -126,7 +126,7 @@ A typical usecase of HyperIntelligence SDK is to work together with [Embedding S
 </figure>
 
 #### SharePoint Online Web Parts
-To integrate with HyperIntelligence SDK on your SharePoint sites, you can build Web Parts to support it.
+To integrate with Hyper SDK on your SharePoint sites, you can build Web Parts to support it.
 
 ##### Classic Sites
 
@@ -168,7 +168,7 @@ On a modern site you cannot edit code snippet in editor directly. Instead, you w
 >For code examples please refer to [SharePoint Framework Client-Side Web Part Samples & Tutorial Materials
 ](https://github.com/pnp/sp-dev-fx-webparts)
 
-You can make your own web parts using HyperIntelligence SDK. 
+You can make your own web parts using Hyper SDK. 
 
 ![](../img/webpart1.png)  
 
@@ -181,7 +181,7 @@ Here's an example you can follow to customize the configuration of HyperSDK:
 [webpart.ts](webpart.ts)
 
 
-## Integrate HyperIntelligence SDK to Salesforce pages
+## Integrate Hyper SDK to Salesforce pages
 
 Salesforce provides a framework called [Visualforce](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_intro_what_is_it.htm#:~:text=Visualforce%20is%20a%20framework%20that,natively%20on%20the%20Lightning%20platform). User can use visualforce makeup language to create custom pages using html and javascript as well as salesforce’s custom tags which can be hosted natively on the Lightning platform.
 
@@ -238,12 +238,12 @@ Check out [Visualforce Developer Guide from Salesforce](https://developer.salesf
 
 Please refer to [Salesforce Experience Builder](https://help.salesforce.com/articleView?id=community_designer_overview.htm&type=5) and [Salesforce Community](https://www.youtube.com/watch?v=mwdgueihnXA).
 
-## Integrate HyperIntelligence SDK to MicroStrategy Web via a plugin
+## Integrate Hyper SDK to MicroStrategy Web via a plugin
 
 Some MicroStrategy Web customizations require the use of JavaScript to be included on a MicroStrategy Web page. The plug-in architecture provided by MicroStrategy Web can be used to achieve this purpose.
 > Read more about [Adding Custom JavaScript](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/WebSDK/Content/topics/promptarch/PA_Adding_Custom_JavaScript.htm)
 
-### Example of the HyperIntelligence SDK Custom Javascript
+### Example of the Hyper SDK Custom Javascript
 ```js
 (function() {
     // replace this line with the real sdk path
@@ -268,12 +268,12 @@ Some MicroStrategy Web customizations require the use of JavaScript to be includ
 }());
 ```
 
-#### How to deploy the HyperIntelligence SDK plugin on MicroStrategy Web?
+#### How to deploy the Hyper SDK plugin on MicroStrategy Web?
 
 1.	Connect to the application server where MicroStrategy Web is installed
 2.	Navigate to the path for MicroStrategy Web
-3.	Copy and paste the “HyperIntelligence SDK” folder in the “Plugins” folder under “MicroStrategy”.  
-4.	Open and edit the “global.js” in “javascript” under the “HyperIntelligence SDK” folder just pasted.
+3.	Copy and paste the “Hyper SDK” folder in the “Plugins” folder under “MicroStrategy”.  
+4.	Open and edit the “global.js” in “javascript” under the “Hyper SDK” folder just pasted.
 5.	Restart the application server 
 
 #### Example of Plugin File

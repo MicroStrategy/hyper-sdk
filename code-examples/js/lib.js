@@ -55,6 +55,7 @@ window.demo = ((win, doc) => {
     highlightIframes: (value) =>
       readOrWrite('highlight.highlightIframes', value),
     previewPageContent: (value) => readOrWrite('previewPageContent', value),
+    keywordInput: (value) => readOrWrite('keywordInput', value),
   };
 
   const getMainBundleURL = (server) => {
@@ -63,6 +64,11 @@ window.demo = ((win, doc) => {
     }
 
     return buildURL(server, 'static/hyper/sdk/js/mstr_hyper.bundle.js');
+  };
+
+
+  const getEnableSearchScript = () => {
+    return "await mstrHyper.enableCards()";
   };
 
   const getStartScript = () => {
@@ -120,6 +126,7 @@ window.demo = ((win, doc) => {
           ${authToken}
           ${onSessionError ? 'onSessionError' : ''}
         },
+        searchEnabled: true,
         ${cards}
         ${logLevel}
         ${highlight}
@@ -186,7 +193,7 @@ window.demo = ((win, doc) => {
     const codes = document.querySelectorAll('code');
     const startScriptHTML = highlight(getStartScript());
     const mainBundleHTML = highlight(getLoadMainBundleScript());
-
+    const enableSearchHTML = highlight(getEnableSearchScript());
     for (let i = 0; i < codes.length; i += 1) {
       if (codes[i].classList.contains('hyper-start')) {
         codes[i].innerHTML = startScriptHTML;
@@ -195,6 +202,8 @@ window.demo = ((win, doc) => {
       } else if (!codes[i].classList.contains('is-highlighted')) {
         codes[i].innerHTML = highlight(codes[i].innerHTML);
         codes[i].classList.add('is-highlighted');
+      } else if (!codes[i].classList.contains('hyper-enable-search')) {
+        codes[i].innerHTML = enableSearchHTML;
       }
     }
   };
@@ -217,7 +226,7 @@ window.demo = ((win, doc) => {
         return;
       }
 
-      const code = e.target.parentElement.nextElementSibling.firstElementChild;
+      const code = e.target.parentElement.nextElementSibling;
       copyToClipboard(code.innerText.trim());
       e.target.innerText = 'Copied';
       setTimeout(() => {
@@ -273,7 +282,13 @@ window.demo = ((win, doc) => {
   };
 
   const validateServerURL = async (url) => {
-    const options = { mode: 'no-cors' };
+    const isTrusted = storage.authMode().endsWith('TRUSTED');
+    const options = isTrusted
+      ? {
+          mode: 'cors',
+          credentials: 'include',
+        }
+      : { mode: 'no-cors' };
     const isValidServer = await fetch(buildURL(url, '/api/status'), options);
     await raiseHTTPError(url, isValidServer, 'Server is not reachable.');
 
@@ -282,7 +297,7 @@ window.demo = ((win, doc) => {
     await raiseHTTPError(
       sdk,
       hasHyperSDK,
-      'HyperIntelligence SDK resources were not found on server.',
+      'Hyper SDK resources were not found on server.',
     );
   };
 

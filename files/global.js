@@ -1,6 +1,7 @@
 (function() {
     // replace this line with the real sdk path
     const baseSDKFolder = 'https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk';
+    // const baseSDKFolder = './sdk';
 
     // add initialization after page is done
     document.addEventListener("DOMContentLoaded", function() {
@@ -14,7 +15,8 @@
                 server: "https://demo.microstrategy.com/MicroStrategyLibrary",
                 auth: {
                     authMode: mstrHyper.AUTH_MODES.GUEST
-                }
+                },
+                searchEnabled : true,
             });
         }
     });

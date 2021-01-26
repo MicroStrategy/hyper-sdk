@@ -1,102 +1,190 @@
-<a name="mstrHyper"></a>
+# mstrHyper
 
-## mstrHyper
-HyperIntelligence SDK entrypoint class.
+Hyper SDK entrypoint class.
 
-**Kind**: global class  
+**Kind**: global class
+## Functions
 
-- [mstrHyper](#mstrhyper)
-  - [mstrHyper.start(options)](#mstrhyperstartoptions)
-  - [mstrHyper.init(options)](#mstrhyperinitoptions)
-  - [mstrHyper.login(authOptions)](#mstrhyperloginauthoptions)
-  - [mstrHyper.isLoggedIn() ⇒ <code>boolean</code>](#mstrhyperisloggedin--boolean)
-  - [mstrHyper.exportLogs() ⇒ <code>string</code>](#mstrhyperexportlogs--string)
-  - [mstrHyper.enableCards(cards)](#mstrhyperenablecardscards)
-  - [mstrHyper.disableCards(cards)](#mstrhyperdisablecardscards)
+<dl>
+<dt><a href="#start">start(options)</a></dt>
+<dd><p>Start the hyper sdk with configurations. It will init the hyper sdk, and login user with the auth options, then enable cards specified in the configurations, if not specified, it will enable all the certified cards or owned cards by default.</p>
+</dd>
+<dt><a href="#enableSearch">enableSearch(options)</a></dt>
+<dd></dd>
+<dt><a href="#init">init(options)</a></dt>
+<dd><p>Init the hyper sdk with configurations</p>
+</dd>
+<dt><a href="#ssoLogin">ssoLogin(authMode)</a> ⇒ <code>Promise&lt;string&gt;</code></dt>
+<dd><p>Initiate the authentication process for supported Single Sign On
+authentication modes(OIDC/SAML/Badge). A new login window
+will open automatically; when user is authenticated, the login
+window will be closed automatically.</p>
+</dd>
+<dt><a href="#exportLogs">exportLogs()</a> ⇒ <code>string</code></dt>
+<dd><p>Export logs</p>
+</dd>
+<dt><a href="#enableCards">enableCards(cards)</a></dt>
+<dd><p>Enable a list of cards</p>
+</dd>
+<dt><a href="#disableCards">disableCards(cards)</a></dt>
+<dd><p>Disable a list of cards</p>
+</dd>
+<dt><a href="#searchKeyword">searchKeyword(searchTerm)</a> ⇒ <code>Object</code></dt>
+<dd><p>Searches all enabled cardsets for a searchTerm and returns the results in an object</p>
+</dd>
+<dt><a href="#hideCard">hideCard(nodeToRenderTo)</a></dt>
+<dd><p>Hides hyper card in a given node</p>
+</dd>
+<dt><a href="#showCard">showCard(nodeToRenderTo, elementId, cardUID)</a> ⇒ <code>IframeCard</code></dt>
+<dd><p>Renders a hyper card to the given node</p>
+</dd>
+<dt><a href="#mergeSearchResults">mergeSearchResults(searchResultPromises)</a> ⇒ <code>object</code></dt>
+<dd><p>Merges search results and returns one object containing concatenated primaryResults and alternateResults</p>
+</dd>
+</dl>
 
-<a name="mstrHyper.start"></a>
+<a name="start"></a>
 
-### mstrHyper.start(options)
+## start(options)
 Start the hyper sdk with configurations. It will init the hyper sdk, and login user with the auth options, then enable cards specified in the configurations, if not specified, it will enable all the certified cards or owned cards by default.
 
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
+**Kind**: global function
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| options | <code>object</code> |  | an configuration object configuring the mstrHyper App |
-| [options.server] | <code>string</code> |  | server url, for example https://demo.microstrategy.com/MicroStrategyLibrary |
-| [options.auth.authMode] | <code>mstrHyper.AUTH\_MODES</code> |  | authentication mode |
-| [options.auth.username] | <code>string</code> |  | username |
-| [options.auth.password] | <code>string</code> |  | password |
-| [options.auth.authToken] | <code>string</code> |  | authtoken |
-| [options.auth.onSessionError] | <code>function</code> |  | a callback function that be used to handle session error and recover session |
-| [options.cards] | <code>Array</code> |  | a list of cards to be enabled when using SDK |
-| [options.logLevel] | <code>mstrHyper.LOG\_LEVELS</code> | <code>&#x27;error&#x27;</code> | logLevel ["error", "warn", "info"] |
-| [options.highlighting.highlightIframes] | <code>boolean</code> | <code>true</code> | whether to highlight iframes |
+| Param                                   | Type                                   | Default                | Description                                                                  |
+| --------------------------------------- | -------------------------------------- | ---------------------- | ---------------------------------------------------------------------------- |
+| options                                 | <code>object</code>                    |                        | an configuration object configuring the mstrHyper App                        |
+| [options.server]                        | <code>string</code>                    |                        | server url, for example https://demo.microstrategy.com/MicroStrategyLibrary  |
+| [options.auth.authMode]                 | <code>mstrHyper.AUTH_MODES</code>      |                        | authentication mode                                                          |
+| [options.auth.username]                 | <code>string</code>                    |                        | username                                                                     |
+| [options.auth.password]                 | <code>string</code>                    |                        | password                                                                     |
+| [options.auth.authToken]                | <code>string</code>                    |                        | authtoken                                                                    |
+| [options.auth.onSessionError]           | <code>function</code>                  |                        | a callback function that be used to handle session error and recover session |
+| [options.cards]                         | <code>Array</code>                     |                        | a list of cards to be enabled when using SDK                                 |
+| [options.logLevel]                      | <code>mstrHyper.LOG_LEVELS</code>      | <code>"error"</code>   | logLevel ["error", "warn", "info"]                                           |
+| [options.highlighting.type]             | <code>mstrHyper.HIGHLIGHT_TYPES</code> | <code>"overlay"</code> | type ["insertion", "overlay"]                                                |
+| [options.highlighting.highlightIframes] | <code>boolean</code>                   | <code>true</code>      | whether to highlight iframes                                                 |
+| [options.searching]                     | <code>object</code>                    |                        | optional callback functions for handling search                              |
+| [options.searching.onSearch]            | <code>object</code>                    |                        | callback for handling incremental search result                              |
+| [options.searching.onSort]              | <code>object</code>                    |                        | callback for handling sort event                                             |
+| [options.searchEnabled]                 | <code>boolean</code>                   |                        | flag to have search feature enabled, false by default                        |
 
-<a name="mstrHyper.init"></a>
+<a name="enableSearch"></a>
 
-### mstrHyper.init(options)
+## enableSearch(options)
+**Kind**: global function
+
+| Param                        | Type                  | Description                                           |
+| ---------------------------- | --------------------- | ----------------------------------------------------- |
+| options                      | <code>object</code>   | an configuration object configuring the mstrHyper App |
+| [options.searching]          | <code>function</code> | optional callback function for incremental search     |
+| [options.searching.onSearch] | <code>object</code>   | callback for handling incremental search result       |
+| [options.searching.onSort]   | <code>object</code>   | callback for handling sort event                      |
+
+<a name="init"></a>
+
+## init(options)
 Init the hyper sdk with configurations
 
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
+**Kind**: global function
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| options | <code>object</code> |  | an configuration object configuring the mstrHyper App |
-| [options.server] | <code>string</code> |  | server url, for example https://demo.microstrategy.com/MicroStrategyLibrary |
-| [options.logLevel] | <code>mstrHyper.LOG\_LEVELS</code> | <code>&#x27;error&#x27;</code> | logLevel ["error", "warn", "info"] |
-| [options.highlighting.highlightIframes] | <code>boolean</code> | <code>true</code> | whether to highlight iframes |
+| Param                                   | Type                                   | Default                | Description                                                                 |
+| --------------------------------------- | -------------------------------------- | ---------------------- | --------------------------------------------------------------------------- |
+| options                                 | <code>object</code>                    |                        | an configuration object configuring the mstrHyper App                       |
+| [options.server]                        | <code>string</code>                    |                        | server url, for example https://demo.microstrategy.com/MicroStrategyLibrary |
+| [options.logLevel]                      | <code>mstrHyper.LOG_LEVELS</code>      | <code>"error"</code>   | logLevel ["error", "warn", "info"]                                          |
+| [options.highlighting.type]             | <code>mstrHyper.HIGHLIGHT_TYPES</code> | <code>"overlay"</code> | type ["insertion", "overlay"]                                               |
+| [options.highlighting.highlightIframes] | <code>boolean</code>                   | <code>true</code>      | whether to highlight iframes                                                |
 
-<a name="mstrHyper.login"></a>
+<a name="ssoLogin"></a>
 
-### mstrHyper.login(authOptions)
-Login to get valid authToken
+## ssoLogin(authMode) ⇒ <code>Promise&lt;string&gt;</code>
+Initiate the authentication process for supported Single Sign On
+authentication modes(OIDC/SAML/Badge). A new login window
+will open automatically; when user is authenticated, the login
+window will be closed automatically.
 
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
+**Kind**: global function
+**Returns**: A promise of the `authToken` associated with the opened session.
+**Params**: authMode: specify the single-sign-on authMode to use, see
+ `mstrHyper.AUTH_MODES`.
+<a name="exportLogs"></a>
 
-| Param | Type | Description |
-| --- | --- | --- |
-| authOptions | <code>object</code> | authentication options |
-| [authOptions.authMode] | <code>mstrHyper.AUTH\_MODES</code> | authentication mode: OIDC|STANDARD|GUEST |
-| [authOptions.username] | <code>string</code> | username |
-| [authOptions.password] | <code>string</code> | password |
-| [authOptions.authToken] | <code>string</code> | authtoken |
-| [authOptions.onSessionError] | <code>function</code> | a callback function that be used to handle session error and recover session during enableCards or hovering card |
-
-<a name="mstrHyper.isLoggedIn"></a>
-
-### mstrHyper.isLoggedIn() ⇒ <code>boolean</code>
-Checking whether the SDK has been logged in
-
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
-**Returns**: <code>boolean</code> - indicate whether the SDK has logged in  
-<a name="mstrHyper.exportLogs"></a>
-
-### mstrHyper.exportLogs() ⇒ <code>string</code>
+## exportLogs() ⇒ <code>string</code>
 Export logs
 
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
-**Returns**: <code>string</code> - a string contains all the logs  
-<a name="mstrHyper.enableCards"></a>
+**Kind**: global function
+**Returns**: <code>string</code> - a string contains all the logs
+<a name="enableCards"></a>
 
-### mstrHyper.enableCards(cards)
+## enableCards(cards)
 Enable a list of cards
 
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param | Type               | Description                                                                 |
+| ----- | ------------------ | --------------------------------------------------------------------------- |
 | cards | <code>Array</code> | a list of cards to be enabled in an array [{id: string, projectId: string}] |
 
-<a name="mstrHyper.disableCards"></a>
+<a name="disableCards"></a>
 
-### mstrHyper.disableCards(cards)
+## disableCards(cards)
 Disable a list of cards
 
-**Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param | Type               | Description                    |
+| ----- | ------------------ | ------------------------------ |
 | cards | <code>Array</code> | a list of cards to be disabled |
 
+<a name="searchKeyword"></a>
+
+## searchKeyword(searchTerm) ⇒ <code>Object</code>
+Searches all enabled cardsets for a searchTerm and returns the results in an object
+
+**Kind**: global function
+**Returns**: <code>Object</code> - Containing { searchId, searchPromises}
+searchId can be used to handle incremental results in custom callback functions.
+searchPromises contains an array of promises that will resolve to search results.
+
+| Param      | Type                | Description        |
+| ---------- | ------------------- | ------------------ |
+| searchTerm | <code>String</code> | a string to search |
+
+<a name="hideCard"></a>
+
+## hideCard(nodeToRenderTo)
+Hides hyper card in a given node
+
+**Kind**: global function
+
+| Param          | Type             |
+| -------------- | ---------------- |
+| nodeToRenderTo | <code>ref</code> |
+
+<a name="showCard"></a>
+
+## showCard(nodeToRenderTo, elementId, cardUID) ⇒ <code>IframeCard</code>
+Renders a hyper card to the given node
+
+**Kind**: global function
+**Returns**: <code>IframeCard</code> - Iframe card object for custom manipulation if desired
+
+| Param          | Type                |
+| -------------- | ------------------- |
+| nodeToRenderTo | <code>ref</code>    |
+| elementId      | <code>string</code> |
+| cardUID        | <code>string</code> |
+
+<a name="mergeSearchResults"></a>
+
+## mergeSearchResults(searchResultPromises) ⇒ <code>object</code>
+Merges search results and returns one object containing concatenated primaryResults and alternateResults
+
+**Kind**: global function
+**Returns**: <code>object</code> - { primaryResults, alternateResults} where primaryResults are all of the cards whose
+primary titles match the search term and alternateResults are all of the cards whose alternate titles match
+the search term.
+
+| Param                | Type                               | Description                                     |
+| -------------------- | ---------------------------------- | ----------------------------------------------- |
+| searchResultPromises | <code>Array.&lt;Promise&gt;</code> | array of promises containing the search results |
