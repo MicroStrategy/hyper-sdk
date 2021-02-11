@@ -27,7 +27,7 @@ For Hyper SDK to work, it needs to connect to the MicroStrategy Library Server a
 
 ```html
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     mstrHyper
       .start({
         // Change the URL to your own Library Server's base URI.
@@ -64,9 +64,77 @@ Currently, Hyper SDK supports below authentication modes:
 
 - OIDC
 - Guest
-- Standard
+- Standard (*see the note below*).
 
-*Read more about [authentication mode](https://www2.microstrategy.com/producthelp/2019/Library/en-us/Content/Modes_of_authentication.htm)*
+*Read more about [authentication mode](https://www2.microstrategy.com/producthelp/2019/Library/en-us/Content/Modes_of_authentication.htm)*.
+
+> **NOTE**
+>
+> Though the Hyper SDK doesn't save the username and password anywhere,
+> please be advised not to share an account with all visitors of your
+> website when use the `Standard` authentication mode. If you are
+> trying to avoid user log in, consider using `Guest` authentication
+> mode instead.
+>
+> ```html
+> <script>
+>   window.addEventListener('load', function () {
+>     mstrHyper
+>       .start({
+>         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
+>         // INSECURE: use the Standard authentication mode in the following
+>         // way exposes the password and the Hyper Cards of the account
+>         // to all visitors of your website.
+>         auth: {
+>           authMode: mstrHyper.AUTH_MODES.STANDARD,
+>           username: 'user',
+>           password: 'secret'
+>         }
+>       })
+>       .then(function () {
+>         console.log('MicroStrategy HyperIntelligence is initialized.');
+>       })
+>       .catch(function (error) {
+>         console.error(error);
+>       });
+>   });
+> </script>
+> ```
+>
+> A more secure way to use the `Standard` authentication mode would be present an
+> login form and collect the credentials from your website's visitors, then pass
+> the credentials to the `mstrHyper.start` function, like below:
+>
+> ```html
+> <div>
+>   <input type="text" id="username" placeholder="Enter username">
+>   <input type="password" id="password" placeholder="Enter password">
+>   <button type="button" id="hyper-sdk-login">Sign In</button>
+> </div>
+> <script>
+>   document
+>     .getElementsById('hyper-sdk-login')
+>     .addEventListener('click', function () {
+>       var username = document.getElementById('username').value;
+>       var password = document.getElementById('password').value;
+>       mstrHyper
+>         .start({
+>           server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
+>           auth: {
+>             authMode: mstrHyper.AUTH_MODES.STANDARD,
+>             username: username,
+>             password: password
+>           }
+>         })
+>         .then(function () {
+>           console.log('MicroStrategy HyperIntelligence is initialized.');
+>         })
+>         .catch(function (error) {
+>           console.error(error);
+>         });
+>     });
+> </script>
+> ```
 
 ### Session Management
 
@@ -80,7 +148,7 @@ You must choose one of the supported authentication modes and determine whether 
 
 ```html
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     mstrHyper
       .start({
         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
@@ -116,7 +184,7 @@ You can specify the `onSessionError` function to handle the authentication error
 ```html
 <script type="text/javascript" src="https://demo.microstrategy.com/hypersdk/js/mstr_hyper.bundle.js"></script>
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     mstrHyper.start({
         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
         auth: {
@@ -170,7 +238,7 @@ When the MicroStrategy Library Server session times out, you’ll need to make a
 
 ```html
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     mstrHyper
       .start({
         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
@@ -220,7 +288,7 @@ E.g. we have 2 certified cards on server from the same project id: `EC70648611E7
 
 ```html
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     mstrHyper
       .start({
         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
@@ -342,7 +410,7 @@ A web page can embed another web page with the `iframe` tag in HTML. You may cho
 
 ```html
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     mstrHyper
       .start({
         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',

@@ -66,9 +66,8 @@ window.demo = ((win, doc) => {
     return buildURL(server, 'static/hyper/sdk/js/mstr_hyper.bundle.js');
   };
 
-
   const getEnableSearchScript = () => {
-    return "await mstrHyper.enableCards()";
+    return 'await mstrHyper.enableCards()';
   };
 
   const getStartScript = () => {
@@ -114,8 +113,8 @@ window.demo = ((win, doc) => {
     }
 
     const script = `<script>
-  ${onSessionError}
-  window.addEventListener('DOMContentLoaded', function () {
+  ${onSessionError.replace(/\n/g, '\n  ')}
+  window.addEventListener('load', function () {
     mstrHyper
       .start({
         server: '${storage.server()}',
@@ -124,7 +123,7 @@ window.demo = ((win, doc) => {
           ${authToken || !isBasic ? '' : username}
           ${authToken || !isBasic ? '' : password}
           ${authToken}
-          ${onSessionError ? 'onSessionError' : ''}
+          ${onSessionError ? 'onSessionError: onSessionError' : ''}
         },
         searchEnabled: true,
         ${cards}
@@ -167,10 +166,10 @@ window.demo = ((win, doc) => {
           'then',
           'catch',
           'function',
-          /(&gt;)?&lt;\/?script(&gt;)?/g,
+          /(&gt;)?&lt;\/?\w+(&gt;)?/g,
         ],
       ],
-      ['comment', [/\s\/\/.+/g, /\/\*.*\*\//gm]],
+      ['comment', [/\s*(?<!:)\/\/.+/g, /\/\*.*\*\//gm]],
     ];
 
     for (let i = 0; i < items.length; i += 1) {
@@ -243,7 +242,7 @@ window.demo = ((win, doc) => {
     });
   };
 
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('load', () => {
     bindCopyCode();
     bindAccordion();
     refresh();

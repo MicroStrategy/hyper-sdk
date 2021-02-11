@@ -16,7 +16,7 @@ iframe {
 fieldset {
   border: 1px solid #3399cc;
   border-radius: 8px;
-  padding: 1rem 1rem 2rem;
+  padding: 1rem;
 }
 
 fieldset > legend {
@@ -24,6 +24,10 @@ fieldset > legend {
   margin-right: 1rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.hero-body {
+  padding: 2rem 1.5rem;
 }
 
 .section {
@@ -35,18 +39,56 @@ fieldset > legend {
   overflow: hidden;
 }
 
-.header-nav-bar {
-  background: #2d3e50;
+.flex {
+  display: flex;
 }
 
-.header-nav-bar .navbar-item,
-.header-nav-bar .navbar-link {
+.flex-flow-col {
+  flex-flow: column;
+}
+
+.flex-flow-wrap {
+  flex-flow: wrap;
+}
+
+.height-100vh {
+  height: 100vh;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-stretch {
+  align-items: stretch;
+}
+
+.nav {
+  background: #2d3e50;
+  min-height: 2rem;
+  position: relative;
+  flex-flow: column;
+}
+
+@media screen and (min-width: 750px) {
+  .nav {
+    flex-flow: row;
+  }
+}
+
+.nav .nav-item {
+  position: relative;
   color: #ffffff;
   cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.5;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
-.header-nav-bar .navbar-item.is-active,
-.header-nav-bar .navbar-link.is-active {
+.nav .nav-item.is-active {
   background: #ffffff;
   color: #7f8c8d;
 }
@@ -78,7 +120,7 @@ fieldset > legend {
 
 .highlight .buttons {
   position: absolute;
-  top: 1rem;
+  top: 0.75rem;
   right: 1rem;
 }
 

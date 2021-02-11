@@ -15,7 +15,7 @@ In your website or application, add this HTML code snippet to your web pages:
 ```js
 <script type="text/javascript" src="https://demo.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk/js/mstr_hyper.bundle.js"></script>
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     mstrHyper
       .start({
         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',

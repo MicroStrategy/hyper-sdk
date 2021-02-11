@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const s = demo.storage;
 
   const highlightType = s.highlightType() || '';
