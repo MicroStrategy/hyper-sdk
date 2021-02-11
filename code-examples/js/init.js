@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const serverURLInput = document.getElementById('t-server-url');
   serverURLInput.value = demo.storage.server();
 

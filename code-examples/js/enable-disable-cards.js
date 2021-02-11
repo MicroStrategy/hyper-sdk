@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const txtCards = document.form.cards;
   txtCards.placeholder = `Enter the cards to be enabled, as in:
 

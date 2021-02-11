@@ -4,7 +4,7 @@
     // const baseSDKFolder = './sdk';
 
     // add initialization after page is done
-    document.addEventListener("DOMContentLoaded", function() {
+    window.addEventListener("load", function() {
         // add script
         const script = document.createElement('script');
         script.src = baseSDKFolder + '/js/mstr_hyper.bundle.js';

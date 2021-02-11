@@ -1,4 +1,4 @@
-// window.addEventListener('DOMContentLoaded', () => {
+// window.addEventListener('load', () => {
 //   const keywordInput = document.getElementById('user-keyword');
 //   keywordInput.value = demo.storage.keywordInput();
 

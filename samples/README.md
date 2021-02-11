@@ -1,10 +1,11 @@
 # Application Integration Samples
 
-  * [Integrate Hyper SDK to a website](#integrate-hyperIntelligence-sdk-to-a-website)
-  * [Integrate Hyper SDK to Sharepoint pages](#integrate-hyperIntelligence-sdk-to-sharepoint-pages)
-  * [Integrate Hyper SDK to Salesforce pages](#integrate-hyperIntelligence-sdk-to-salesforce-pages)
+  * [Integrate Hyper SDK to a website](#integrate-hyper-sdk-to-a-website)
+  * [Integrate Hyper SDK to Sharepoint pages](#integrate-hyper-sdk-to-sharepoint-pages)
+  * [Integrate Hyper SDK to Salesforce pages](#integrate-hyper-sdk-to-salesforce-pages)
   * [Working together with MicroStrategy Embedding SDK](#working-together-with-microStrategy-embedding-sdk)
-  * [Integrate Hyper SDK to MicroStrategy Web via a plugin](#integrate-hyperIntelligence-sdk-to-microstrategy-web-via-a-plugin)
+  * [Integrate Hyper SDK to MicroStrategy Web via a plugin](#integrate-hyper-sdk-to-microstrategy-web-via-a-plugin)
+  * [Integrate Hyper SDK to MicroStrategy Library Web via a plugin](#integrate-hyper-sdk-to-microstrategy-library-web-via-a-plugin)
 
 ## Integrate Hyper SDK to a website
 
@@ -30,7 +31,7 @@ Hyper SDK needs to connect to a MicroStrategy Library Server to work. After Hype
 
 ```html
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     mstrHyper
       .start({
         server: 'https://demo.microstrategy.co/MicroStrategyLibrary',
@@ -140,12 +141,17 @@ Edit the Snippet of the web part, and add the follow code there.
 
 ```html
 <script>
-  document.addEventListener("DOMContentLoaded", function(){
+  const initHyperSDK = function() {
     mstrHyper.start({
       server: "https://demo.microstrategy.com/MicroStrategyLibrary",
       mstrHyper.AUTH_MODES.GUEST,
     });
-  });
+  }
+  if(document.readyState === 'complete') {
+    initHyperSDK();
+  } else {
+    window.addEventListener('load', initHyperSDK);
+  }
 </script>
 <script
   type="text/javascript"
@@ -202,12 +208,17 @@ Here is the code you can used to create Visualforce component.
   src="https://demo.microstrategy.com/hypersdk/js/mstr_hyper.bundle.js">
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function(){
+  const initHyperSDK = function() {
     mstrHyper.start({
       server: "https://demo.microstrategy.com/MicroStrategyLibrary",
       mstrHyper.AUTH_MODES.GUEST,
     });
-  });
+  }
+  if(document.readyState === 'complete') {
+    initHyperSDK();
+  } else {
+    window.addEventListener('load', initHyperSDK);
+  }
 </script>
 ```
 
@@ -248,14 +259,12 @@ Some MicroStrategy Web customizations require the use of JavaScript to be includ
 (function() {
     // replace this line with the real sdk path
     const baseSDKFolder = 'https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk';
-
-    // add initialization after page is done
-    document.addEventListener("DOMContentLoaded", function() {
+    const initHyperSDK = function() {
         // add script
         const script = document.createElement('script');
         script.src = baseSDKFolder + '/js/mstr_hyper.bundle.js';
         document.body.appendChild(script);
-
+        
         script.onload = () => {
             mstrHyper.start({
                 server: "https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary",
@@ -264,18 +273,69 @@ Some MicroStrategy Web customizations require the use of JavaScript to be includ
                 }
             });
         }
-    });
+    }
+    // add initialization after page is done
+    if(document.readyState === 'complete') {
+        initHyperSDK();
+    } else {
+        window.addEventListener('load', initHyperSDK);
+    }
 }());
 ```
 
 #### How to deploy the Hyper SDK plugin on MicroStrategy Web?
 
-1.	Connect to the application server where MicroStrategy Web is installed
-2.	Navigate to the path for MicroStrategy Web
-3.	Copy and paste the “Hyper SDK” folder in the “Plugins” folder under “MicroStrategy”.  
-4.	Open and edit the “global.js” in “javascript” under the “Hyper SDK” folder just pasted.
-5.	Restart the application server 
+1.  Connect to the application server where MicroStrategy Web is installed
+2.  Navigate to the path for MicroStrategy Web
+3.  Copy and paste the “Hyper SDK” folder in the “Plugins” folder under “MicroStrategy”.  
+4.  Open and edit the “global.js” in “javascript” under the “Hyper SDK” folder just pasted.
+5.  Restart the application server 
 
 #### Example of Plugin File
 [Sample MSTR Web Plugin](../samples/plugin.zip)
+
+## Integrate Hyper SDK to MicroStrategy Library Web via a plugin
+
+The way plugin works in MicroStrategy Library Web is the same as MicroStrategy Web.
+> Read more about [Adding Custom JavaScript](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/WebSDK/Content/topics/promptarch/PA_Adding_Custom_JavaScript.htm)
+
+### Example of the Hyper SDK Custom Javascript
+```js
+(function() {
+    // replace this line with the real sdk path
+    const baseSDKFolder = 'https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary/static/hyper/sdk';
+    const initHyperSDK = function() {
+        // add script
+        const script = document.createElement('script');
+        script.src = baseSDKFolder + '/js/mstr_hyper.bundle.js';
+        document.body.appendChild(script);
+        
+        script.onload = () => {
+            mstrHyper.start({
+                server: "https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary",
+                auth: {
+                    authMode: mstrHyper.AUTH_MODES.GUEST
+                }
+            });
+        }
+    }
+    // add initialization after page is done
+    if(document.readyState === 'complete') {
+        initHyperSDK();
+    } else {
+        window.addEventListener('load', initHyperSDK);
+    }
+}());
+```
+
+#### How to deploy the Hyper SDK plugin on MicroStrategy Library Web?
+
+1.  Connect to the application server where MicroStrategy Library Web is installed
+2.  Navigate to the path for MicroStrategy Library Web
+3.  Copy and paste the “Hyper SDK” folder in the “Plugins” folder under “MicroStrategyLibrary”.  
+4.  Open and edit the “global.js” in “javascript” under the “Hyper SDK” folder just pasted.
+5.  Restart the application server 
+
+#### Example of Plugin File
+[Sample MSTR Library Web Plugin](../samples/plugin.zip)
 

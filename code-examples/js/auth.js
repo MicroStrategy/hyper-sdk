@@ -39,7 +39,7 @@ const initCredentials = (s) => {
   });
 };
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const s = demo.storage;
   initAuthMode(s);
   initCredentials(s);

@@ -26,9 +26,7 @@ const loadMainJs = (server) =>
     timeoutId = setTimeout(
       () =>
         reject(
-          new Error(
-            'Failed to load the main Hyper SDK JavaScript bundle.',
-          ),
+          new Error('Failed to load the main Hyper SDK JavaScript bundle.'),
         ),
       5000,
     );
@@ -78,16 +76,21 @@ const init = async () => {
 
   //Example onSearch callback which prints searchResults and searchId for each chunk
   const onSearch = (searchResults, searchId) => {
-    console.log('This is an example of a custom onSearch callback.')
+    console.log('This is an example of a custom onSearch callback.');
     console.log('searchResults :', searchResults, `searchId :`, searchId);
   };
 
   //Example onSort callback which prints the sanitizedKeywords, sortingMap, and searchId once all search chunks are completed
   const onSort = (sanitizedKeywords, sortingMap, searchId) => {
-    console.log('This is an example of a custom onSort callback.')
-    console.log('sanitizedKeywords :', sanitizedKeywords
-    , 'sortingMap :', sortingMap
-    , 'searchId :', searchId);
+    console.log('This is an example of a custom onSort callback.');
+    console.log(
+      'sanitizedKeywords :',
+      sanitizedKeywords,
+      'sortingMap :',
+      sortingMap,
+      'searchId :',
+      searchId,
+    );
   };
 
   const authToken = s.authToken() || null;
@@ -109,16 +112,16 @@ const init = async () => {
       highlightIframes: s.highlightIframes() !== 'false',
     },
     searchEnabled: true,
-    searching: {onSort, onSearch},
+    searching: { onSort, onSearch },
   });
   // await mstrHyper.enableCards();
-  if(keywordInput.length > 0) {
+  if (keywordInput.length > 0) {
     await searchKeyword(keywordInput);
   }
   return hyperObject;
 };
 
-function addCountElement(count, parentNode){
+function addCountElement(count, parentNode) {
   let newDiv = document.createElement('div');
   const newContent = document.createTextNode(`${count} card(s) not shown`);
   newDiv.appendChild(newContent);
@@ -127,18 +130,22 @@ function addCountElement(count, parentNode){
   newDiv.style.color = 'white';
   newDiv.style.textAlign = 'center';
   parentNode.insertBefore(newDiv, null);
-  return {node: newDiv, result: null};
+  return { node: newDiv, result: null };
 }
 
-async function addElement (result, parentNode) {
+async function addElement(result, parentNode) {
   // create a new div element
   let newDiv = document.createElement('div');
   parentNode.insertBefore(newDiv, null);
-  await mstrHyper.showCard({elementId: result.ref, cardUID: result.cardSetId, nodeToRenderTo: newDiv});
-  return {node: newDiv, result};
+  await mstrHyper.showCard({
+    elementId: result.ref,
+    cardUID: result.cardSetId,
+    nodeToRenderTo: newDiv,
+  });
+  return { node: newDiv, result };
 }
 
-function addSectionTextElement(sectionText, parentNode){
+function addSectionTextElement(sectionText, parentNode) {
   let newDiv = document.createElement('div');
   const newContent = document.createTextNode(sectionText);
   newDiv.appendChild(newContent);
@@ -147,17 +154,17 @@ function addSectionTextElement(sectionText, parentNode){
   newDiv.style.color = 'white';
   newDiv.style.textAlign = 'center';
   parentNode.insertBefore(newDiv, null);
-  return {node: newDiv, result: null};
+  return { node: newDiv, result: null };
 }
 
-async function handleResultList(resultList, storageList, sectionText){
-  let IFrameNode = document.getElementById('IFrame');
+async function handleResultList(resultList, storageList, sectionText) {
+  let IFrameNode = document.getElementById('card-list');
   let count = 0;
-  if(resultList.length > 0){
+  if (resultList.length > 0) {
     textNodes.push(addSectionTextElement(sectionText, IFrameNode));
   }
-  for(result of resultList){
-    if(count == 5) {
+  for (result of resultList) {
+    if (count == 5) {
       textNodes.push(addCountElement(resultList.length - 5, IFrameNode));
       break;
     }
@@ -167,51 +174,69 @@ async function handleResultList(resultList, storageList, sectionText){
   return count > 0;
 }
 
-const searchKeyword = async(searchTerm = document.getElementById("searchTerm").value) => {
+const searchKeyword = async (
+  searchTerm = document.getElementById('searchTerm').value,
+) => {
   hideCard();
   renderedPrimaries = [];
   renderedPrimaries = [];
   textNodes = [];
-  console.log("Searching: ", searchTerm)
+  console.log('Searching: ', searchTerm);
   let r = await mstrHyper.searchKeyword(searchTerm);
   let results = await mstrHyper.mergeSearchResults(r.searchResults);
-  console.log("Searching results ", results);
+  console.log('Searching results ', results);
   let numRendered = 0;
-  numRendered += await handleResultList(results.primaryResults, renderedPrimaries, 'Primary Results');
-  numRendered += await handleResultList(results.alternateResults, renderedAlternates, 'Alternate Results');
-  if(numRendered > 0){
+  numRendered += await handleResultList(
+    results.primaryResults,
+    renderedPrimaries,
+    'Primary Results',
+  );
+  numRendered += await handleResultList(
+    results.alternateResults,
+    renderedAlternates,
+    'Alternate Results',
+  );
+  if (numRendered > 0) {
     togglePanel(true);
   }
-}
+};
 
 const togglePanel = (toggle) => {
-  let container = document.getElementById('IFrame');
+  let container = document.getElementById('card-list');
   container.style.display = toggle ? 'block' : 'none';
-}
+};
 
 const hideCard = () => {
-  for(textNode of textNodes){
+  for (textNode of textNodes) {
     textNode.node.style.visibility = 'hidden';
   }
-  for(renderedPrimary of renderedPrimaries){
-    mstrHyper.hideCard({ nodeToRenderTo : renderedPrimary.node});
+  for (renderedPrimary of renderedPrimaries) {
+    mstrHyper.hideCard({ nodeToRenderTo: renderedPrimary.node });
   }
-  for(renderedAlternate of renderedAlternates){
-    mstrHyper.hideCard({ nodeToRenderTo : renderedAlternate.node});
+  for (renderedAlternate of renderedAlternates) {
+    mstrHyper.hideCard({ nodeToRenderTo: renderedAlternate.node });
   }
-}
+};
 
 const showCard = async () => {
-  for(textNode of textNodes){
+  for (textNode of textNodes) {
     textNode.node.style.visibility = 'visible';
   }
-  for(renderedPrimary of renderedPrimaries){
-    await mstrHyper.showCard({elementId: renderedPrimary.result.ref, cardUID: renderedPrimary.result.cardSetId, nodeToRenderTo: renderedPrimary.node});
+  for (renderedPrimary of renderedPrimaries) {
+    await mstrHyper.showCard({
+      elementId: renderedPrimary.result.ref,
+      cardUID: renderedPrimary.result.cardSetId,
+      nodeToRenderTo: renderedPrimary.node,
+    });
   }
-  for(renderedAlternate of renderedAlternates){
-    await mstrHyper.showCard({elementId: renderedAlternate.result.ref, cardUID: renderedAlternate.result.cardSetId, nodeToRenderTo: renderedAlternate.node});
+  for (renderedAlternate of renderedAlternates) {
+    await mstrHyper.showCard({
+      elementId: renderedAlternate.result.ref,
+      cardUID: renderedAlternate.result.cardSetId,
+      nodeToRenderTo: renderedAlternate.node,
+    });
   }
-}
+};
 
 const deleteHighlights = (e) => {
   const highlights = e.getElementsByTagName('mstr-hi');
@@ -265,7 +290,7 @@ const bindEdit = () => {
   });
 };
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   status('Initializing...', 'info');
 
   document.getElementById('go-back').addEventListener('click', () => {

@@ -4,42 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Preview - Hyper SDK</title>
-    <link rel="stylesheet" href="css/bulma.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/preview.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <style>
-      #IFrame iframe[id*="kpi_card"] {
-        position: relative !important;
-        width: 382px;
-        height: 720px;
-      }
-      #IFrame {
-        display: none;
-        width: 400px;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .wrapper-class {
-        display: flex;
-      }
-
-      .open-close-container {
-        display: flex;
-        justify-content: space-around;
-        width: 600px;
-      }
-
-      .main-content {
-        width: 100%;
-      }
-    </style>
   </head>
-
   <body class="preview">
     <button class="button is-small top-right-2" id="go-back">Go Back</button>
     <div class="wrapper-class">
@@ -105,12 +80,6 @@
             </div>
           </div>
         </section>
-        <!-- <section>
-          <div class="card">
-            <div id="IFrame" class="card-content">
-            </div>
-          </div>
-        </section> -->
         <section class="section is-fullwidth is-relative mx-6">
           <button
             id="edit"
@@ -177,8 +146,7 @@
           </div>
         </section>
       </div>
-      <div id="IFrame" class="cards-wrapper" style="display: none;">
-      </div>
+      <div id="card-list" class="cards-wrapper" style="display: none"></div>
     </div>
     <script src="js/lib.js"></script>
     <script src="js/preview.js"></script>

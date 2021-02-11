@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const input = document.form.onSessionError;
   input.placeholder = `var onSessionError = function (error) {
   return mstrHyper.login({
