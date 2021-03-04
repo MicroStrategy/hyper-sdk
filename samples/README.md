@@ -34,7 +34,7 @@ Hyper SDK needs to connect to a MicroStrategy Library Server to work. After Hype
   window.addEventListener('load', function () {
     mstrHyper
       .start({
-        server: 'https://demo.microstrategy.co/MicroStrategyLibrary',
+        server: 'https://demo.microstrategy.com/MicroStrategyLibrary',
         auth: {
           authMode: mstrHyper.AUTH_MODES.GUEST
         }
