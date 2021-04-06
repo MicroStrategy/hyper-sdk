@@ -1,0 +1,11 @@
+{
+  "name": "samples",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "node-build-tools": "^0.3.2"
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Preview - Hyper SDK</title>
+  </head>
+  <body class="preview">
+    <button class="button is-small top-right-2" id="go-back">Go Back</button>
+    <div class="wrapper-class">
+      <div class="main-content">
+        <section class="hero is-bold is-info">
+          <div class="hero-body">
+            <h1 class="title">Hyper SDK Live Preview</h1>
+          </div>
+        </section>
+        <section class="section is-fullwidth accordion">
+          <div class="accordion-head is-unselectable">Your configuration</div>
+          <figure class="highlight accordion-body">
+            <div class="buttons has-addons mb-0">
+              <button class="button is-small mb-0 copy">Copy</button>
+            </div>
+            <pre><code class="html load-main-js"></code><code class="html hyper-start"></code></pre>
+          </figure>
+        </section>
+        <section class="section is-fullwidth">
+          <section class="hero is-small" id="hyper-init-status">
+            <div class="hero-body">
+              <p></p>
+            </div>
+          </section>
+        </section>
+        <section class="section is-fullwidth">
+          <h2 class="title is-3">Search API</h2>
+          <div class="field has-addons mt-4">
+            <div class="control is-expanded">
+              <input
+                type="text"
+                class="input"
+                id="searchTerm"
+                placeholder="Search Keyword..."
+              />
+            </div>
+            <div class="control">
+              <button class="button is-info" onclick="searchKeyword()">
+                Search Keyword
+              </button>
+            </div>
+          </div>
+          <div class="open-close-container">
+            <div class="control">
+              <button class="button is-info" onclick="togglePanel(true)">
+                Open Cards Panel
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-info" onclick="togglePanel(false)">
+                Close Cards Panel
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-info" onclick="hideCard()">
+                Hide Card
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-info" onclick="showCard()">
+                Show Card
+              </button>
+            </div>
+          </div>
+        </section>
+        <section class="section is-fullwidth is-relative mx-6">
+          <button
+            id="edit"
+            title="Edit the page"
+            type="button"
+            class="button is-small top-right-2"
+          >
+            Edit
+          </button>
+          <div>
+            <p>3M</p>
+            <p>A-Mark Precious Metals</p>
+            <p>ABM Industries</p>
+            <p>ADP</p>
+            <p>AECOM</p>
+            <p>AES</p>
+            <p>AGCO</p>
+            <p>AIG</p>
+            <p>AK Steel Holding</p>
+            <p>AT&amp;T</p>
+          </div>
+        </section>
+      </div>
+      <div id="card-list" class="cards-wrapper" style="display: none"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+#card-list iframe[id*='kpi_card'] {
+  position: relative !important;
+  width: 382px;
+  height: 720px;
+}
+#card-list {
+  display: none;
+  width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mstr-hyper-card-container {
+  position: relative !important;
+  width: 382px;
+  height: 720px;
+  border: none;
+}
+
+.wrapper-class {
+  display: flex;
+}
+
+.open-close-container {
+  display: flex;
+  justify-content: space-around;
+  width: 600px;
+}
+
+.main-content {
+  width: 100%;
+}

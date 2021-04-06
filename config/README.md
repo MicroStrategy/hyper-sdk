@@ -62,48 +62,19 @@ For more information about the `mstrHyper.start()`, check [the API documents](..
 
 Currently, Hyper SDK supports below authentication modes:
 
-- OIDC
-- Guest
-- Standard (*see the note below*).
+* OIDC
+* Guest
+* Standard (*see the note below*).
 
 *Read more about [authentication mode](https://www2.microstrategy.com/producthelp/2019/Library/en-us/Content/Modes_of_authentication.htm)*.
 
 > **NOTE**
 >
-> Though the Hyper SDK doesn't save the username and password anywhere,
-> please be advised not to share an account with all visitors of your
-> website when use the `Standard` authentication mode. If you are
-> trying to avoid user log in, consider using `Guest` authentication
-> mode instead.
->
-> ```html
-> <script>
->   window.addEventListener('load', function () {
->     mstrHyper
->       .start({
->         server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
->         // INSECURE: use the Standard authentication mode in the following
->         // way exposes the password and the Hyper Cards of the account
->         // to all visitors of your website.
->         auth: {
->           authMode: mstrHyper.AUTH_MODES.STANDARD,
->           username: 'user',
->           password: 'secret'
->         }
->       })
->       .then(function () {
->         console.log('MicroStrategy HyperIntelligence is initialized.');
->       })
->       .catch(function (error) {
->         console.error(error);
->       });
->   });
-> </script>
-> ```
->
-> A more secure way to use the `Standard` authentication mode would be present an
-> login form and collect the credentials from your website's visitors, then pass
-> the credentials to the `mstrHyper.start` function, like below:
+> For security reasons, the user and password should not be written directly
+> on the JavaScript code to prevent it from being visible to all users.
+> A more secure way to use the Standard authentication mode would be present
+> a login form and collect the credentials from your website's visitors, then
+> pass the credentials to the `mstrHyper.start` function, like below:
 >
 > ```html
 > <div>
@@ -225,8 +196,8 @@ The Cross-Origin Resource Sharing (CORS) standard works by adding new [HTTP head
 
 Alternatively, your website can establish a MicroStrategy Library Server session and pass it to Hyper SDK. With this method, you can:
 
-- Pass the authToken of the session to Hyper SDK during initialization.
-- *Or* leave authToken to null but call mstrHyper.login at the time you choose.
+* Pass the authToken of the session to Hyper SDK during initialization.
+* *Or* leave authToken to null but call mstrHyper.login at the time you choose.
 
 > **What is the `authToken`?**
 >
@@ -280,9 +251,11 @@ By default, Hyper SDK enables all the Hyper Cards that are available to the user
 ### Enable selected cards during initialization
 
 You can specify the `cards` parameter to let SDK know the list of cards the app wants to enable when it calls `mstrHyper.start()`.
-> If the **cards** parameter is not specified, the SDK will load all available cards for the logged in user, including:
->  - All certified cards
->  - All non-certified cards created by the current user
+> If the **cards** parameter is not specified, the SDK will load all
+> available cards for the logged in user, including:
+>
+> * All certified cards
+> * All non-certified cards created by the current user
 
 E.g. we have 2 certified cards on server from the same project id: `EC70648611E7A2F962E90080EFD58751`, and the metadata(card) ids are: `51CBD67C11E9E92900000080EF25C5C7` and `692CC6C011EA07CC00000080EF3532F5`. The parameter configuration could look like:
 
@@ -346,6 +319,7 @@ You may disable a list of Hyper Cards at any time by calling the disableCards AP
 ```js
 async disableCards( cards );
 ```
+
 **Kind**: static method of [<code>mstrHyper</code>](#mstrHyper)
 
 For more information, check [the API documents](../api.md).
@@ -434,9 +408,9 @@ A web page can embed another web page with the `iframe` tag in HTML. You may cho
 
 ## Error Handling
 
-If there is any error while using Hyper SDK, the error object will be thrown as specificied below:
+If there is any error while using Hyper SDK, the error object will be thrown as specified below:
 
-**Error Object**
+### Error Object
 
 ```js
 const Error = {
@@ -448,7 +422,7 @@ const Error = {
 }
 ```
 
-**Error Names**
+### Error Names
 
 ```js
 const ErrorNames = {

@@ -1,13 +1,1 @@
-#IFrame iframe[id*='kpi_card'] {
-  position: relative !important;
-  width: 382px;
-  height: 720px;
-}
-
-#IFrame {
-  display: none;
-  width: 400px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-}
+#IFrame iframe[id*=kpi_card]{position:relative!important;width:382px;height:720px}#IFrame{display:none;width:400px;height:auto;display:flex;flex-direction:column}
