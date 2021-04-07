@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Highlight Settings - Hyper SDK</title>
+  </head>
+  <body>
+    <section class="hero is-bold is-warning">
+      <div class="hero-body">
+        <h1 class="title">Highlight Settings</h1>
+        <h2 class="subtitle">Tell the Hyper SDK how to highlight keywords.</h2>
+      </div>
+    </section>
+    <section class="section is-fullwidth">
+      <form name="form">
+        <div class="field is-horizontal mt-6">
+          <div class="field-label">
+            <label class="label">Highlight Type</label>
+          </div>
+          <div class="field-body">
+            <div class="control">
+              <div class="select">
+                <select name="type">
+                  <option>mstrHyper.HIGHLIGHT_TYPES.DISABLED</option>
+                  <option value="mstrHyper.HIGHLIGHT_TYPES.INSERTION">
+                    mstrHyper.HIGHLIGHT_TYPES.INSERTION (default)
+                  </option>
+                  <option>mstrHyper.HIGHLIGHT_TYPES.OVERLAY</option>
+                  <option value="">[Not set, use defaults]</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <label class="label">Highlight Iframes</label>
+          </div>
+          <div class="field-body">
+            <div class="control">
+              <label class="radio">
+                <input type="radio" name="iframes" checked />
+                Yes (default)
+              </label>
+              <label class="radio">
+                <input type="radio" name="iframes" />
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+    <section class="section is-fullwidth">
+      <figure class="highlight mt-6">
+        <div class="buttons has-addons mb-0">
+          <button class="button is-small copy mb-0">Copy</button>
+          <a class="button is-small mb-0" href="preview.html">Preview</a>
+        </div>
+        <pre><code class="html hyper-start"></code></pre>
+      </figure>
+    </section>
+  </body>
+</html>

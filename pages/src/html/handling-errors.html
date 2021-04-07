@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Handling Errors - Hyper SDK</title>
+  </head>
+  <body>
+    <section class="hero is-bold is-danger">
+      <div class="hero-body">
+        <h1 class="title">Handling Errors</h1>
+        <h2 class="subtitle">
+          Define the error handlers to be called in the error cases. Check the
+          api documentation for more information about error handling.
+        </h2>
+      </div>
+    </section>
+    <section class="section is-fullwidth">
+      <form name="form">
+        <div class="mt-6">
+          <h1 class="title">
+            Set <code>onSessionError</code> in
+            <code>mstrHyper.start</code>
+          </h1>
+          <div class="field">
+            <p class="mb-3">
+              You may specify an error handler during the SDK initialization.
+            </p>
+            <div class="control">
+              <textarea
+                class="input is-info"
+                style="height: 12rem"
+                name="onSessionError"
+                placeholder="var onSessionError = async (error) => {};"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+      <figure class="highlight">
+        <div class="buttons has-addons mb-0">
+          <button class="button is-small copy mb-0">Copy</button>
+          <a class="button is-small mb-0" href="preview.html">Preview</a>
+        </div>
+        <pre><code class="html hyper-start"></code></pre>
+      </figure>
+    </section>
+  </body>
+</html>

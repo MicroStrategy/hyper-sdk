@@ -1,3 +1,4 @@
+
 # mstrHyper
 
 Hyper SDK entrypoint class.
@@ -6,7 +7,7 @@ Hyper SDK entrypoint class.
 ## Functions
 
 <dl>
-<dt><a href="#start">start(options)</a></dt>
+<dt><a href="#start">start(options)</a> ⇒ <code>Promise&lt;Object&gt;</code></dt>
 <dd><p>Start the hyper sdk with configurations. It will init the hyper sdk, and login user with the auth options, then enable cards specified in the configurations, if not specified, it will enable all the certified cards or owned cards by default.</p>
 </dd>
 <dt><a href="#enableSearch">enableSearch(options)</a></dt>
@@ -23,7 +24,7 @@ window will be closed automatically.</p>
 <dt><a href="#exportLogs">exportLogs()</a> ⇒ <code>string</code></dt>
 <dd><p>Export logs</p>
 </dd>
-<dt><a href="#enableCards">enableCards(cards)</a></dt>
+<dt><a href="#enableCards">enableCards(cards)</a> ⇒ <code>Promise&lt;Object&gt;</code></dt>
 <dd><p>Enable a list of cards</p>
 </dd>
 <dt><a href="#disableCards">disableCards(cards)</a></dt>
@@ -45,10 +46,22 @@ window will be closed automatically.</p>
 
 <a name="start"></a>
 
-## start(options)
+## start(options) ⇒ <code>Promise&lt;Object&gt;</code>
 Start the hyper sdk with configurations. It will init the hyper sdk, and login user with the auth options, then enable cards specified in the configurations, if not specified, it will enable all the certified cards or owned cards by default.
 
 **Kind**: global function
+**Returns**: A promise of Object represent which card is enabled and which card meet error when enable it.
+```
+{
+	enabledCards: { cardId: string; projectId: string; name: string }[];
+	errors: {
+		cardId: string;
+		projectId: string;
+		name: string;
+		error: { name: string; message: string; type: string };
+	}[];
+}
+```
 
 | Param                                   | Type                                   | Default                | Description                                                                  |
 | --------------------------------------- | -------------------------------------- | ---------------------- | ---------------------------------------------------------------------------- |
@@ -116,14 +129,27 @@ Export logs
 **Returns**: <code>string</code> - a string contains all the logs
 <a name="enableCards"></a>
 
-## enableCards(cards)
+## enableCards(cards) ⇒ <code>Promise&lt;Object&gt;</code>
 Enable a list of cards
 
 **Kind**: global function
+**Returns**: A promise of Object represent which card is enabled and which card meet error when enable it.
+```
+{
+	enabledCards: { cardId: string; projectId: string; name: string }[];
+	errors: {
+		cardId: string;
+		projectId: string;
+		name: string;
+		error: { name: string; message: string; type: string };
+	}[];
+}
+```
 
 | Param | Type               | Description                                                                 |
 | ----- | ------------------ | --------------------------------------------------------------------------- |
 | cards | <code>Array</code> | a list of cards to be enabled in an array [{id: string, projectId: string}] |
+
 
 <a name="disableCards"></a>
 
