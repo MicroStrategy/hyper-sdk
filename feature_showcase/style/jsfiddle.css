@@ -1,0 +1,14 @@
+.jsfiddle-button {
+    display: grid;
+    place-items: center;
+    /* height:50px; */
+    background: rgb(2, 46, 241);
+    color:white;
+    box-shadow: 2px 3px 5px 0 rgb(0 0 0 / 15%);  
+    border-radius:8px;
+  }
+  .jsfiddle-button:hover {
+
+    box-shadow: 5px 5px 10px 0 rgb(0 0 0 / 15%); 
+    transform: scale(1.05) perspective(1px)
+  }

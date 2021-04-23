@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Hyper Web SDK Demo</title>
+    <script type="text/javascript" src="https://demo.microstrategy.com/hypersdk/js/mstr_hyper.bundle.js"></script>
+    <!-- This is for the jsfiddle button. You don't need it in your application.  -->
+    <script type="text/javascript" src="js/jsfiddle.js"></script>
+</head>
+
+<body>
+
+    <br />
+    <p style="border: 2px; border-style: dotted; border-color: red">This example shows authentication workflow. HyperSDK
+        supports
+        different ways to authenticate user. </p>
+
+    <div>
+        <table>
+            <tr>
+                <td colspan="2">
+                    <p style="border: 2px; border-style: dotted; border-color: red">
+                        You can pass authentication mode and credentials to HyperSDK. You should provide interface for
+                        user to enter credentials. DO NOT hard-code login and password in your web page. </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>Server:</span>
+                </td>
+                <td><input type="text" id="server" value="https://demo.microstrategy.com/MicroStrategyLibrary2"
+                        size="100" /></td>
+            </tr>
+            <tr>
+                <td><span>Username:</span></td>
+                <td><input type="text" id="login" placeholder="guest" /></td>
+            </tr>
+            <tr>
+                <td><span>Password:</span></td>
+                <td><input type="password" id="password" /></td>
+            </tr>
+            <tr>
+                <td><span>Auth Mode:</span></td>
+                <td><select label="Auth Mode" id="authmode">
+                        <option value="1">Standard</option>
+                        <option value="8">Guest</option>
+                        <option value="16">LDAP</option>
+                        <option value="0x100000">SAML</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Login" onclick="login()" /></td>
+                <td><input type="submit" value="Logout" onclick="mstrHyper.logout()" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p style="border: 2px; border-style: dotted; border-color: red">
+                        You can pass authentication token to HyperSDK. </p>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="GetToken" onclick="getToken()" /></td>
+                <td>AuthToken: <input type="text" id="token" /></td>
+            </tr>
+            <td colspan="2"><input type="submit" value="loginWithToken" onclick="loginWithToken()" /></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script>
+
+
+
+        login = function () {
+            const authmode = parseInt(document.getElementById("authmode").value)
+            if (authmode == 0x100000) {
+                loginWithSAML()
+            } else {
+                const uid = document.getElementById("login").value
+                const password = document.getElementById("password").value
+                mstrHyper.start({
+                    server: document.getElementById("server").value,
+                    auth: {
+                        authMode: authmode,
+                        username: uid,
+                        password: password,
+                    }
+                })
+
+            }
+
+
+        };
+
+        loginWithSAML = function () {
+
+            //listen to the message will be sent from MicroStrategy Library login page
+            window.addEventListener("message", messageEventListener);
+
+            const baseURL = document.getElementById("server").value;
+
+            //need to store the tab. close it later.
+            this.newTab = window.open(baseURL + "/auth/login-dialog.jsp?loginMode=1048576", "_blank");
+
+        };
+
+        messageEventListener = function () {
+
+            //SAML auth is complete
+            window.removeEventListener("message", messageEventListener);
+
+            mstrHyper.start({
+                server: document.getElementById("server").value,
+                auth: {
+                    authMode: mstrHyper.AUTH_MODES.SAML
+                }
+            })
+
+            //close tab
+            if (this.newTab) {
+                this.newTab.close();
+                this.newTab = null;
+            }
+        }
+
+
+        loginWithToken = function () {
+            token = document.getElementById("token").value
+            authMode = parseInt(document.getElementById("authmode").value)
+            mstrHyper.login({
+                authMode: authMode,// LDAP 0x10, GUEST 0x08, SAML 0x100000
+                authToken: token,
+            }).then(() => {
+                mstrHyper.enableCards();
+            });
+        }
+
+        getToken = function () {
+
+            server = document.getElementById("server").value
+            username = document.getElementById("login").value
+            password = document.getElementById("password").value
+            loginMode = parseInt(document.getElementById("authmode").value)
+
+            var options = {
+                method: 'POST',
+                credentials: 'include', // Including cookie
+                mode: 'cors',  // Setting as cors mode for cross origin
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    loginMode,
+                    username,
+                    password
+                })
+            };
+
+            fetch(server + '/api/auth/login', options)
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById("token").value = response.headers.get('x-mstr-authToken');
+                    } else {
+                        response.json().then(function (json) {
+                            console.log(json);
+                        });
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+        };
+    </script>
+
+    <p style="border: 2px; border-style: dotted; border-color: red">Add content you want to highlight in the text area
+        below. </p>
+
+    <div id="content">
+        <p>Apple</p>
+        <p>MicroStrategy</p>
+        <p>Bitcoin</p>
+        <p>Sierra</p>
+        <p>Gladio</p>
+        <p>Jessica Liu</p>
+    </div>
+
+    <div>
+        <input id="textInput" onchange="addText()"></input>
+        <button type="submit" title="Add Content" onclick="addText()">Add Content</button>
+    </div>
+    <script>
+
+        addText = function () {
+            content = document.getElementById("content");
+            textInput = document.getElementById('textInput');
+            p = document.createElement("p");
+            p.innerText = textInput.value;
+            content.appendChild(p);
+            textInput.value = "";
+        };
+
+    </script>
+
+</body>
+
+</html>
