@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var page_html = `
 <html>
   <head>
+  <meta charset="UTF-8">
   <script type="text/javascript" src="https://demo.microstrategy.com/hypersdk/js/mstr_hyper.bundle.js"></script>    
   </head>
   <body>`+document.body.innerHTML+`</body>
