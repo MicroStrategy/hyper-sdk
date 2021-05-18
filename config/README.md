@@ -84,7 +84,7 @@ Currently, Hyper SDK supports below authentication modes:
 > </div>
 > <script>
 >   document
->     .getElementsById('hyper-sdk-login')
+>     .getElementById('hyper-sdk-login')
 >     .addEventListener('click', function () {
 >       var username = document.getElementById('username').value;
 >       var password = document.getElementById('password').value;
