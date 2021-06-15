@@ -18,7 +18,7 @@
 - [Frequently Asked Questions](faq.md)
 - [API Doc](api.md)
 - [Code Examples](https://microstrategy.github.io/hyper-sdk/code-examples/)
-
+- [Feature Showcase](features.md)
 ## Introduction to HyperIntelligence
 
 [HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence) was introduced in MicroStrategy 2019 as a new addition to MicroStrategy Workstation and allows analysts to create objects called Cards.

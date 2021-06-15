@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hyper Web SDK Demo</title>
+    <script type="text/javascript" src="https://demo.microstrategy.com/hypersdk/js/mstr_hyper.bundle.js"></script>
+
+    <!-- This is for the jsfiddle button. You don't need it in your application.  -->
+    <script type="text/javascript" src="js/jsfiddle.js"></script>
+</head>
+
+<body>
+
+    <style>
+        /* Workaround. This will not be needed in the future.  */
+        #searchResult .mstr-hyper-card-container {
+            position: relative !important;
+            width: 382px;
+            height: 720px;
+        }
+    </style>
+
+    <p style="border: 2px; border-style: dotted; border-color: red">You can use search api to insert Hyper Card into
+        your interface. </p>
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function () {
+            mstrHyper.start({
+                server: "https://demo.microstrategy.com/MicroStrategyLibrary",
+                auth: {
+                    authMode: mstrHyper.AUTH_MODES.GUEST
+                },
+                searchEnabled: true,
+            })
+
+            var options = {};
+
+            //Add search callback
+            options.searching = {
+                onSearch: (searchResults, searchId) => {
+                    console.log('This is onSearch callback!')
+                }
+            }
+
+            mstrHyper.enableSearch(options)
+
+
+        });
+
+        async function search() {
+            keyword = document.getElementById("searchKeyword").value;
+
+            // var {searchId, searchResults} = await mstrHyper.searchKeyword(keyword, document.getElementById("IFrame"));
+
+            var { searchId, searchResults } = await mstrHyper.searchKeyword(keyword);
+
+            var mergedSearchResults = await mstrHyper.mergeSearchResults(searchResults);
+            var card = mergedSearchResults.primaryResults[0];
+            var searchResultDiv = document.getElementById("searchResult")
+            mstrHyper.showCard({ cardUID: card.cardSetId, elementId: card.ref, nodeToRenderTo: searchResultDiv });
+        };
+
+
+    </script>
+
+
+    <p>Apple</p>
+    <p>MicroStrategy</p>
+    <input type="text" id="searchKeyword"></input>
+    <input type="submit" onclick="search()" value="Submit">
+    <br />
+    <p> Search Results:</p>
+    <div id="searchResult" style="border-style:dashed; border-color:red;width: 400px;min-height: 800px;display: flex;">
+    </div>
+</body>
+
+</html>

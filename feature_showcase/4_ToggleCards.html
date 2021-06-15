@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hyper SDK Demo</title>
+    <script type="text/javascript" src="https://demo.microstrategy.com/hypersdk/js/mstr_hyper.bundle.js"></script>
+    <!-- This is for the jsfiddle button. You don't need it in your application.  -->
+    <script type="text/javascript" src="js/jsfiddle.js"></script>
+</head>
+
+
+<body>
+    <div>
+        <p style="border: 2px; border-style: dotted; border-color: red">This is a list of cards available. Uncheck some
+            cards, then click update button. </p>
+        <div id="cardContainer">
+        </div>
+    </div>
+    <div>
+        <button type="button" onclick="update()" style="margin-top: 50px;">Update</button>
+        <button type="button" onclick="enableAll()" style="margin-top: 50px;">Enable All</button>
+        <button type="button" onclick="disableAll()" style="margin-top: 50px;">Disable All</button>
+    </div>
+    <script>
+
+        function getCards(enabled) {
+            var cardsOptions = document.getElementsByName("card");
+            var cards = [];
+            var i;
+            cardsOptions.forEach(c => {
+
+                if (c.checked == enabled) {
+                    cards.push({ "name": c.getAttribute("cardName"), "id": c.getAttribute("cardId"), "projectId": c.getAttribute("projectId") })
+                }
+            })
+            return cards;
+        }
+
+        function checkAll(checked) {
+            var cardsOptions = document.getElementsByName("card");
+            cardsOptions.forEach(c => c.checked = checked)
+        }
+
+        function disableAll() {
+            checkAll(false)
+            mstrHyper.disableCards();
+        }
+        function enableAll() {
+            checkAll(true)
+            mstrHyper.enableCards();
+        }
+
+        function update() {
+            mstrHyper.enableCards(getCards(true))
+            mstrHyper.disableCards(getCards(false))
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            mstrHyper.start({
+                server: "https://demo.microstrategy.com/MicroStrategyLibrary",
+                auth: {
+                    authMode: mstrHyper.AUTH_MODES.GUEST
+                }
+            }).then((cards) => {
+                self.enabledCards = cards.enabledCards;
+                renderCards(enabledCards)
+
+            })
+        });
+
+        function renderCards(enabledCards) {
+            cardContainer = document.getElementById("cardContainer");
+            enabledCards.forEach(card => {
+
+                const div = document.createElement("div")
+                const cardButton = document.createElement("input")
+                cardButton.name = "card"
+                cardButton.type = "checkbox"
+                cardButton.checked = true
+                cardButton.innerText = card.name
+                cardButton.setAttribute("cardName", card.name)
+                cardButton.setAttribute("cardId", card.cardId)
+                cardButton.setAttribute("projectId", card.projectId)
+
+                div.appendChild(cardButton)
+
+                const label = document.createElement("label")
+                label.innerText = card.name
+                div.appendChild(label)
+                cardContainer.appendChild(div)
+
+            });
+
+        }
+
+
+    </script>
+
+    <p style="border: 2px; border-style: dotted; border-color: red">Add content you want to highlight in the text area
+        below. </p>
+
+    <div id="content">
+        <p>Apple</p>
+        <p>MicroStrategy</p>
+        <p>Bitcoin</p>
+        <p>Sierra</p>
+        <p>Gladio</p>
+        <p>Jessica Liu</p>
+    </div>
+
+    <div>
+        <input id="textInput" onchange="addText()"></input><br />
+        <button type="submit" title="Add Content" onclick="addText()">Add Content</button>
+    </div>
+    <script>
+
+        const addText = () => {
+            content = document.getElementById("content");
+            textInput = document.getElementById('textInput');
+            p = document.createElement("p");
+            p.innerText = textInput.value;
+            content.appendChild(p);
+            textInput.value = "";
+        };
+
+    </script>
+
+</body>
+
+</html>

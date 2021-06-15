@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hyper SDK Demo</title>
+    <script type="text/javascript" src="https://demo.microstrategy.com/hypersdk/js/mstr_hyper.bundle.js"></script>  
+    <!-- This is for the jsfiddle button. You don't need it in your application.  -->  
+    <script type="text/javascript" src="js/jsfiddle.js"></script>    
+  </head>
+  <body>
+    
+    <p style="border: 2px; border-style: dotted; border-color: red">In this example, only company card is used. As a result, you should see company name being highlighted by Hyper SDK.</p>
+
+    <p>
+      (April 5th, 2021) MicroStrategy, the business intelligence firm that has made bitcoin its main treasury reserve, said it purchased about 253 more of the leading cryptocurrency for $15 million in cash.
+    </p>
+    <p>
+      As a result, MicroStrategy now holds about 91,579 bitcoin at a total purchase price of $2.23 billion, at an average price of $24,311 per coin.
+    </p>
+
+    <script>
+
+      document.addEventListener("DOMContentLoaded", function(){
+          mstrHyper.start({
+              server: "https://demo.microstrategy.com/MicroStrategyLibrary",
+              auth:{
+                authMode: mstrHyper.AUTH_MODES.GUEST
+              },
+              cards:[
+              {"name":"Companies", "id":"727A3AFA11EAF76825400080EF658129", "projectId":"EC70648611E7A2F962E90080EFD58751"}
+              ]
+          }).then(()=> {  
+
+          });
+        });
+    </script>
+  </body>
+</html>
