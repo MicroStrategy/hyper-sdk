@@ -19,6 +19,8 @@
 - [API Doc](api.md)
 - [Code Examples](https://microstrategy.github.io/hyper-sdk/code-examples/)
 - [Feature Showcase](features.md)
+
+
 ## Introduction to HyperIntelligence
 
 [HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence) was introduced in MicroStrategy 2019 as a new addition to MicroStrategy Workstation and allows analysts to create objects called Cards.
@@ -28,6 +30,8 @@ Cards are visual representations of your data. In a card, you can create lists, 
 After creating cards in Workstation, analysts can deploy their cards to a user's web browser, mobile device, and Microsoft Outlook. Users can then get real-time answers by hovering over keywords in a web browser, scanning a barcode on a mobile device, or clicking on an email to see relevant cards.
 
 ![hyper-card-sample.png](img/hyper-card-sample.png)
+
+Detailed information about **HyperIntelligence** can be found in [**official documentation**](https://www2.microstrategy.com/producthelp/Current/Hyper/en-us/Content/intro_hyperintelligence.htm).
 
 ## What is Hyper SDK
 
@@ -42,5 +46,5 @@ you will need to configure Hyper SDK to connect to a HyperIntelligence Service i
 
 Upon calling `start()` function, it will proceed to scan and highlight matched DOM elements on the web page.
 
-
+Visit [this page](https://microstrategy.github.io/hyper-sdk) for detailed information on **HyperSDK** and live demos.
 
