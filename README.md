@@ -46,5 +46,5 @@ you will need to configure Hyper SDK to connect to a HyperIntelligence Service i
 
 Upon calling `start()` function, it will proceed to scan and highlight matched DOM elements on the web page.
 
-Visit this page for detailed information on [**HyperSDK**](https://microstrategy.github.io/hyper-sdk) and live demos.
+Visit [this page](https://microstrategy.github.io/hyper-sdk) for detailed information on **HyperSDK** and live demos.
 
