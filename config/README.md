@@ -64,7 +64,8 @@ Currently, Hyper SDK supports below authentication modes:
 
 * OIDC
 * Guest
-* Standard (*see the note below*).
+* Standard (*see the note below*)
+* SAML
 
 *Read more about [authentication mode](https://www2.microstrategy.com/producthelp/2019/Library/en-us/Content/Modes_of_authentication.htm)*.
 

@@ -18,6 +18,7 @@ Currently, Hyper SDK supports:
 - OIDC
 - Guest
 - Standard
+- SAML
 
 ## Browser Support
 
