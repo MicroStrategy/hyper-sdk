@@ -384,7 +384,9 @@ The Hyper Intelligence SDK supports two different techniques to highlight or und
 - `insertion`
   This is the `default` highlighting or underlining style that is enabled for most of the webpages.
 - `overlay`
-Instead of directly modifying the HTML of the page, a new highlighting container is created, which is then overlayed on top of the keywords.
+Instead of directly modifying the HTML of the page, a new highlighting container is created, which is then overlaid on top of the keywords.
+
+**Note**: `overlay` is recommended if the Hyper Intelligence SDK is breaking the host application while inserting the highlights.
 
 An example of specifiying `overlay` as the highlighting method:
 ```html
