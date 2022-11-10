@@ -379,6 +379,38 @@ To render a card, provide the html `node` to render to, `cardUID` (ref value of 
 
 ## Highlight Settings
 
+### Specify highlighting type
+The Hyper Intelligence SDK supports two different techniques to highlight or underline keywords on a webpage.
+- `insertion`
+  This is the `default` highlighting or underlining style that is enabled for most of the webpages.
+- `overlay`
+Instead of directly modifying the HTML of the page, a new highlighting container is created, which is then overlayed on top of the keywords.
+
+An example of specifiying `overlay` as the highlighting method:
+```html
+<script>
+  window.addEventListener('load', function () {
+    mstrHyper
+      .start({
+        server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
+        auth: {
+          authMode: mstrHyper.AUTH_MODES.GUEST
+        },
+        highlighting: {
+          // Highlight iframes, `false` by default.
+          type: 'overlay'
+        }
+      })
+      .then(function () {
+        console.log('MicroStrategy HyperIntelligence is initialized.');
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  });
+</script>
+```
+
 ### Whether to highlight iframes
 
 A web page can embed another web page with the `iframe` tag in HTML. You may choose to let Hyper SDK highlight the nested web pages by setting `highlightIframes` to `true`.
