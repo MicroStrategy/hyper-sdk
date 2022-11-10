@@ -47,6 +47,7 @@
                         <option value="8">Guest</option>
                         <option value="16">LDAP</option>
                         <option value="0x100000">SAML</option>
+                        <option value="0x400000">OIDC</option>
                     </select></td>
             </tr>
             <tr>
@@ -75,55 +76,29 @@
 
         login = function () {
             const authmode = parseInt(document.getElementById("authmode").value)
-            if (authmode == 0x100000) {
-                loginWithSAML()
+            let auth
+            if (authmode == 0x100000 || authmode == 0x400000) {
+                auth = { 
+                    authMode: authmode,
+                    onSessionError: function (error) {
+                        // Open a new window for user to login.
+                        return mstrHyper.ssoLogin(mstrHyper.AUTH_MODES.OIDC);
+                    }
+                }
             } else {
                 const uid = document.getElementById("login").value
                 const password = document.getElementById("password").value
-                mstrHyper.start({
-                    server: document.getElementById("server").value,
-                    auth: {
+                auth = {
                         authMode: authmode,
                         username: uid,
                         password: password,
-                    }
-                })
-
-            }
-
-
-        };
-
-        loginWithSAML = function () {
-
-            //listen to the message will be sent from MicroStrategy Library login page
-            window.addEventListener("message", messageEventListener);
-
-            const baseURL = document.getElementById("server").value;
-
-            //need to store the tab. close it later.
-            this.newTab = window.open(baseURL + "/auth/login-dialog.jsp?loginMode=1048576", "_blank");
-
-        };
-
-        messageEventListener = function () {
-
-            //SAML auth is complete
-            window.removeEventListener("message", messageEventListener);
-
-            mstrHyper.start({
-                server: document.getElementById("server").value,
-                auth: {
-                    authMode: mstrHyper.AUTH_MODES.SAML
                 }
-            })
-
-            //close tab
-            if (this.newTab) {
-                this.newTab.close();
-                this.newTab = null;
             }
-        }
+            mstrHyper.start({
+                    server: document.getElementById("server").value,
+                    auth
+            })
+        };
 
 
         loginWithToken = function () {
