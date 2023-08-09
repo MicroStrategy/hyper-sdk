@@ -73,7 +73,7 @@
     const script = document.createElement('script');
     script.src = joinUrl(
       libraryServerUrl,
-      '/static/hyper/sdk/js/mstr_hyper.bundle.js'
+      `/static/hyper/sdk/js/mstr_hyper.bundle.js?v=${new Date().getTime()}`
     );
     document.body.appendChild(script);
     return script;
