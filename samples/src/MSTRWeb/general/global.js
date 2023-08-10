@@ -1,5 +1,5 @@
 (function (config) {
-  const PATH_TO_HYPER_JS = '/static/hyper/sdk/js/mstr_hyper.bundle.js';
+  const PATH_TO_HYPER_JS = `/static/hyper/sdk/js/mstr_hyper.bundle.js?v=${new Date().getTime()}`;
   const joinUrl = (baseUrl, apiUrl) =>
     `${baseUrl.replace(/\/+$/g, '')}/${apiUrl.replace(/^\/+/g, '')}`;
 
