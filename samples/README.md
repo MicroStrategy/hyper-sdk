@@ -13,12 +13,10 @@
     - [How to use HyperSDK in Salesforce Visualforce page](#how-to-use-hypersdk-in-salesforce-visualforce-page)
     - [Other ways to use HyperSDK](#other-ways-to-use-hypersdk)
   - [Integrate Hyper SDK to MicroStrategy Web via a plugin](#integrate-hyper-sdk-to-microstrategy-web-via-a-plugin)
-    - [Example of the Hyper SDK Custom Javascript](#example-of-the-hyper-sdk-custom-javascript)
-      - [How to deploy the Hyper SDK plugin on MicroStrategy Web?](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-web)
-      - [Example plugin](#example-plugin)
-      - [Example plugin that supports seamless login](#example-plugin-that-supports-seamless-login)
+    - [How to deploy the Hyper SDK plugin on MicroStrategy Web?](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-web)
+    - [How to deploy the Seamless Hyper SDK plugin on MicroStrategy Web?](#how-to-deploy-the-seamless-hyper-sdk-plugin-on-microstrategy-web)
   - [Integrate Hyper SDK to MicroStrategy Library Web via a plugin](#integrate-hyper-sdk-to-microstrategy-library-web-via-a-plugin)
-    - [Example of the Hyper SDK Custom Javascript](#example-of-the-hyper-sdk-custom-javascript-1)
+    - [Example of the Hyper SDK Custom Javascript](#example-of-the-hyper-sdk-custom-javascript)
       - [How to deploy the Hyper SDK plugin on MicroStrategy Library Web?](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-library-web)
       - [Example of Plugin File](#example-of-plugin-file)
 
@@ -256,54 +254,198 @@ Please refer to [Salesforce Experience Builder](https://help.salesforce.com/arti
 Some MicroStrategy Web customizations require the use of JavaScript to be included on a MicroStrategy Web page. The plug-in architecture provided by MicroStrategy Web can be used to achieve this purpose.
 > Read more about [Adding Custom JavaScript](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/WebSDK/Content/topics/promptarch/PA_Adding_Custom_JavaScript.htm)
 
-### Example of the Hyper SDK Custom Javascript
-
-```js
-(function (config) {
-  const PATH_TO_HYPER_JS = '/static/hyper/sdk/js/mstr_hyper.bundle.js';
-  const joinUrl = (baseUrl, apiUrl) =>
-    `${baseUrl.replace(/\/+$/g, '')}/${apiUrl.replace(/^\/+/g, '')}`;
-
-  const initPlugin = () => {
-    const script = document.createElement('script');
-    script.src = joinUrl(config.libraryServerUrl, PATH_TO_HYPER_JS);
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      mstrHyper.start({
-        server: config.libraryServerUrl,
-        auth: {
-          authMode: mstrHyper.AUTH_MODES.GUEST
-        }
-      });
-    };
-  };
-
-  if (document.readyState === 'complete') {
-    initPlugin();
-  } else {
-    window.addEventListener('load', initPlugin);
-  }
-})({
-  libraryServerUrl: 'YOUR LIBRARY SERVER URL'
-});
-```
-
-#### How to deploy the Hyper SDK plugin on MicroStrategy Web?
+### How to deploy the Hyper SDK plugin on MicroStrategy Web?
 
 1. Connect to the application server where MicroStrategy Web is installed
 2. Navigate to the path for MicroStrategy Web
-3. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategy".
-4. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted.
-5. Restart the application server.
+3. Donwload and unzip the [Sample MSTR Web Plugin](../samples/dist/MSTRWeb-plugin.zip)
+4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategy".
+5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted.
+   1. You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment. Based on your authentication, you may need to change `authMode: mstrHyper.AUTH_MODES.GUEST` as well, see [here](../config/README.md#authentication-configurations) for more details.
 
-#### Example plugin
+    ```js
+    (function (config) {
+      const PATH_TO_HYPER_JS = `/static/hyper/sdk/js/mstr_hyper.bundle.js?v=${new Date().getTime()}`;
+      const joinUrl = (baseUrl, apiUrl) =>
+    `${baseUrl.replace(/\/+$/g, '')}/${apiUrl.replace(/^\/+/g, '')}`;
 
-[Sample MSTR Web Plugin](../samples/dist/MSTRWeb-plugin.zip)
+      const initPlugin = () => {
+       const script = document.createElement('script');
+        script.src = joinUrl(config.libraryServerUrl, PATH_TO_HYPER_JS);
+        document.body.appendChild(script);
 
-#### Example plugin that supports seamless login
+        script.onload = () => {
+          mstrHyper.start({
+            server: config.libraryServerUrl,
+            auth: {
+              authMode: mstrHyper.AUTH_MODES.GUEST
+            }
+          });
+        };
+      };
 
-[Sample MSTR Web Seamless Login Plugin](../samples/dist/MSTRWeb-plugin-seamless-login.zip)
+      if (document.readyState === 'complete') {
+        initPlugin();
+      } else {
+        window.addEventListener('load', initPlugin);
+      }
+    })({
+      libraryServerUrl: 'YOUR LIBRARY SERVER URL'
+    });
+    ```
+
+6. Restart the application server.
+
+### How to deploy the Seamless Hyper SDK plugin on MicroStrategy Web?
+
+1. Connect to the application server where MicroStrategy Web is installed
+2. Navigate to the path for MicroStrategy Web
+3. Donwload and unzip the [Sample MSTR Web Seamless Plugin](../samples/dist/MSTRWeb-plugin-seamless-login.zip)
+4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategy".
+5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted.
+   1. You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment, `mstrWebUrl: 'YOU MSTR WEB URL'` to the real MicroStrategy Web Url in you environment.
+
+    ```js
+    (function (mstrConfig, config) {
+      const { libraryServerUrl, mstrWebUrl }    = config;
+      const joinUrl = (baseUrl, apiUrl) =>
+        `${baseUrl.replace(/\/+$/, '')}/$   {apiUrl.replace(/^\/+/, '')}`;
+
+      const isInBlackListPage = () => {
+        const blackList = ['welcome',     'login', 'welcomeadmin'];
+        if (window.microstrategy) {
+          return blackList.includes(window.   microstrategy.pageName);
+        }
+        return false;
+      };
+
+      const makeRequest = (url, config) =>
+        fetch(url, {
+          mode: 'cors',
+          credentials: 'include',
+          ...config
+        });
+
+      const getCurrentLibraryToken = () =>
+        makeRequest(joinUrl   (libraryServerUrl, '/api/auth/  token'), {
+          method: 'GET',
+          headers: { Accept: '*/*' }
+        }).then((response) => {
+          if (response.status === 204) {
+            return response.headers.get   ('x-mstr-authtoken');
+          }
+
+          throw new Error(`HTTP ${response.   status}: no library session.`);
+        });
+
+      const createIdentityToken = () => {
+        const taskUrl = (mstrConfig || {}).   taskURL || 'taskProc';
+        const api = joinUrl(
+          mstrWebUrl,
+          `/servlet/${taskUrl}?   taskId=createIdentityToken&   taskContentType=json&taskEnv=xhr`
+        );
+
+        return makeRequest(api, { method:     'POST' }).then((response) => {
+          if (response.status === 200) {
+            return response.json().then((e)     => e.identityToken);
+          }
+
+          throw new Error(
+            `HTTP ${response.status}: failed    to create web identity token.`
+          );
+        });
+      };
+
+      const getLibraryTokenByIdentityToken =    (identityToken) =>
+        makeRequest(joinUrl   (libraryServerUrl, '/api/auth/  delegate'), {
+          method: 'POST',
+          headers: {
+            Accept: '*/*',
+            'Content-Type': 'application/   json'
+          },
+          body: JSON.stringify({ loginMode:     -1, identityToken: identityToken })
+        }).then((response) => {
+          if (response.status === 204) {
+            return response.headers.get   ('x-mstr-authtoken');
+          }
+
+          throw new Error(
+            `HTTP ${response.status}: failed    to get library token by identity    token.`
+          );
+        });
+
+      const webSeamlessLogin = () =>
+        createIdentityToken().then    (getLibraryTokenByIdentityToken);
+
+      const loadHyperSdk = () => {
+        const script = document.createElement   ('script');
+        script.src = joinUrl(
+          libraryServerUrl,
+          `/static/hyper/sdk/js/mstr_hyper.   bundle.js?v=${new Date().getTime()}   `
+        );
+        document.body.appendChild(script);
+        return script;
+      };
+
+      const startHyperSdk = (libraryToken)    => {
+        let webAuthMode;
+        if (mstrConfig) {
+          webAuthMode = parseInt(mstrConfig.    authMode, 10);
+        } else {
+          webAuthMode = mstrHyper.AUTH_MODES.   STANDARD;
+          console.warn(
+            'mstrConfig is not available,     assuming standard authentication    mode.'
+          );
+        }
+
+        mstrHyper
+          .start({
+            server: libraryServerUrl,
+            auth: {
+              authMode: webAuthMode,
+              authToken: libraryToken,
+              onSessionError: (error) => {
+                console.error(error.message);
+                return webSeamlessLogin();
+              }
+            }
+          })
+          .then((cards) => {
+            console.log('MicroStrategy    HyperIntelligence is initialized.   ');
+            console.log('Hyper Cards:',     cards);
+          })
+          .catch((error) => console.error   ('mstrHyper.start error: ',   error));
+      };
+
+      const initHyperSdk = (libraryToken) =>    {
+        const script = loadHyperSdk();
+        script.onload = () => startHyperSdk   (libraryToken);
+      };
+
+      const initPlugin = () => {
+        if (isInBlackListPage() || !    (mstrConfig || {}).   seamlessLoginEnabled) {
+          return;
+        }
+
+        getCurrentLibraryToken()
+          .catch(webSeamlessLogin)
+          .then(initHyperSdk)
+          .catch((error) => console.error   ('Initialize Hyper SDK error:',   error));
+      };
+
+      if (document.readyState ===     'complete') {
+        initPlugin();
+      } else {
+        window.addEventListener('load',     initPlugin);
+      }
+    })(window.mstrConfig, {
+      libraryServerUrl: 'YOUR LIBRARY SERVER URL',
+      mstrWebUrl: 'YOU MSTR WEB URL'
+    });
+
+    ```
+
+6. Restart the application server.
 
 ## Integrate Hyper SDK to MicroStrategy Library Web via a plugin
 
@@ -356,4 +498,5 @@ If you only need to enable Hyper SDK on specific dossiers, see the code [here](.
 #### Example of Plugin File
 
 [Sample MSTR Library Web Plugin](../samples/dist/MSTRWeb-plugin.zip)
+
 [Sample MSTR Library Web Plugin Enabled on Specific Dossiers](../samples/dist/MSTR-Library-Web-plugin-enable-on-specific-dossiers.zip)
