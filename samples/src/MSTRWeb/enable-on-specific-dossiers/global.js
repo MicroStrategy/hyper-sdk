@@ -7,7 +7,7 @@
   const ProjectID = 'PROJECT_ID';
 
   const dossierMap = {
-    //the dossier id you want to show highlight
+    //the dossier id you want to show highlight on
     'DOSSIER_ID': [
       {
         // the hyper card id you want to enable on this certain dossier

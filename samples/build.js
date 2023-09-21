@@ -14,10 +14,10 @@ const MSTR_WEB_SEAMLESS_LOGIN_PLUGIN = path.join(
   'MSTRWeb-plugin-seamless-login.zip'
 );
 
-const MSTR_WEB_ENABLE_ON_CERTAIN_DOSSIER = path.join(
+const MSTR_LIBRARY_WEB_ENABLE_ON_SPECIFIC_DOSSIERS = path.join(
   __dirname,
   'dist',
-  'MSTRWeb-plugin-enable-on-certain-dossier.zip'
+  'MSTR-Library-Web-plugin-enable-on-specific-dossiers.zip'
 );
 
 const buildMSTRWebPluginZip = (outputZipFile, sourceJavaScriptFile) => {
@@ -49,8 +49,8 @@ const build = () => {
   );
 
   buildMSTRWebPluginZip(
-    MSTR_WEB_ENABLE_ON_CERTAIN_DOSSIER,
-    path.join(__dirname, 'src', 'MSTRWeb', 'enable-on-certain-dossier', 'global.js')
+    MSTR_LIBRARY_WEB_ENABLE_ON_SPECIFIC_DOSSIERS,
+    path.join(__dirname, 'src', 'MSTRWeb', 'enable-on-specific-dossiers', 'global.js')
   );
 
   fs.removeSync(BUILD_DIR);
