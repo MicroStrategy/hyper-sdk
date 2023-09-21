@@ -19,6 +19,7 @@
       - [Example plugin that supports seamless login](#example-plugin-that-supports-seamless-login)
   - [Integrate Hyper SDK to MicroStrategy Library Web via a plugin](#integrate-hyper-sdk-to-microstrategy-library-web-via-a-plugin)
     - [Example of the Hyper SDK Custom Javascript](#example-of-the-hyper-sdk-custom-javascript-1)
+    - [How to deploy the Hyper sdk plugin only on certain dossier on MicroStrategy Library Web?](#how-to-deploy-the-hyper-sdk-plugin-only-on-certain-dossier-on-microstrategy-library-web)
       - [How to deploy the Hyper SDK plugin on MicroStrategy Library Web?](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-library-web)
       - [Example of Plugin File](#example-of-plugin-file)
 
@@ -342,6 +343,9 @@ The way plugin works in MicroStrategy Library Web is the same as MicroStrategy W
   libraryServerUrl: 'YOUR LIBRARY SERVER URL'
 });
 ```
+
+### How to deploy the Hyper sdk plugin only on certain dossier on MicroStrategy Library Web?
+[Add code to filter web page by Url and on turn on Hyper on the filtered PAGE](../samples/dist/MSTRWeb-plugin-enable-on-certain-dossier.zip)
 
 #### How to deploy the Hyper SDK plugin on MicroStrategy Library Web?
 
