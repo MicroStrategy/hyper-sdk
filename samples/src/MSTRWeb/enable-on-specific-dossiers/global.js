@@ -1,5 +1,5 @@
 (function (config) {
-  const PATH_TO_HYPER_JS = '/static/hyper/sdk/js/mstr_hyper.bundle.js';
+  const PATH_TO_HYPER_JS = `/static/hyper/sdk/js/mstr_hyper.bundle.js?v=${new Date().getTime()}`;
   const joinUrl = (baseUrl, apiUrl) =>
     `${baseUrl.replace(/\/+$/g, '')}/${apiUrl.replace(/^\/+/g, '')}`;
 
@@ -8,10 +8,17 @@
 
   const dossierMap = {
     //the dossier id you want to show highlight on
-    'DOSSIER_ID': [
+    'DOSSIER_1_ID': [
       {
         // the hyper card id you want to enable on this certain dossier
-        id: 'HYPER_CARD_ID',
+        id: 'HYPER_CARD_1_ID',
+        projectId: ProjectID
+      }
+    ],
+    'DOSSIER_2_ID': [
+      {
+        // the hyper card id you want to enable on this certain dossier
+        id: 'HYPER_CARD_2_ID',
         projectId: ProjectID
       }
     ]
@@ -88,5 +95,5 @@
     window.addEventListener('load', initPlugin);
   }
 })({
-  libraryServerUrl: 'https://demo.microstrategy.com/MicroStrategyLibrary'
+  libraryServerUrl: 'YOUR LIBRARY SERVER URL'
 });
