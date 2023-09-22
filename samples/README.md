@@ -253,6 +253,12 @@ Please refer to [Salesforce Experience Builder](https://help.salesforce.com/arti
 Some MicroStrategy Web customizations require the use of JavaScript to be included on a MicroStrategy Web page. The plug-in architecture provided by MicroStrategy Web can be used to achieve this purpose.
 > Read more about [Adding Custom JavaScript](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/WebSDK/Content/topics/promptarch/PA_Adding_Custom_JavaScript.htm)
 
+Here we provide 2 sample plugins you can use in MicroStrategy Web.
+
+If you want to customize your authentication by yourself, please refer to [Sample MSTR Web Plugin](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-web).
+
+If you want to have a seamless login experience, let Hyper SDK reuse MicroStrategy Web's session, please refer to [Sample MSTR Web Seamless Plugin](#how-to-deploy-the-seamless-hyper-sdk-plugin-on-microstrategy-web).
+
 ### How to deploy the Hyper SDK plugin on MicroStrategy Web?
 
 1. Connect to the application server where MicroStrategy Web is installed
@@ -260,7 +266,7 @@ Some MicroStrategy Web customizations require the use of JavaScript to be includ
 3. Download and unzip the [Sample MSTR Web Plugin](../samples/dist/MSTRWeb-plugin.zip)
 4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategy"
 5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted
-   1. You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment. Based on your authentication, you may need to change `authMode: mstrHyper.AUTH_MODES.GUEST` as well, see [here](../config/README.md#authentication-configurations) for more details
+   - You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment. Based on your authentication, you may need to change `authMode: mstrHyper.AUTH_MODES.GUEST` as well, see [here](../config/README.md#authentication-configurations) for more details
 
     ```js
     (function (config) {
@@ -302,7 +308,7 @@ Some MicroStrategy Web customizations require the use of JavaScript to be includ
 3. Download and unzip the [Sample MSTR Web Seamless Plugin](../samples/dist/MSTRWeb-plugin-seamless-login.zip)
 4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategy".
 5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted.
-   1. You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment, `mstrWebUrl: 'YOU MSTR WEB URL'` to the real MicroStrategy Web Url in you environment
+   - You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment, `mstrWebUrl: 'YOU MSTR WEB URL'` to the real MicroStrategy Web Url in you environment
 
     ```js
     (function (mstrConfig, config) {
@@ -451,6 +457,12 @@ Some MicroStrategy Web customizations require the use of JavaScript to be includ
 The way plugin works in MicroStrategy Library Web is the same as MicroStrategy Web.
 > Read more about [Adding Custom JavaScript](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/WebSDK/Content/topics/promptarch/PA_Adding_Custom_JavaScript.htm)
 
+Here we provide 2 sample plugins you can use in MicroStrategy Library.
+
+If you want to have highlight show on all dossiers, please refer to [Sample MSTR Web Plugin](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-library-web).
+
+If you want to only show highlight on specific dossier(s), please refer to [Sample MSTR Web Enable on Specific Dossiers Plugin](#how-to-deploy-the-hyper-sdk-plugin-and-only-enable-it-on-specific-dossiers-microstrategy-library-web).
+
 ### How to deploy the Hyper SDK plugin on MicroStrategy Library Web?
 
 1. Connect to the application server where MicroStrategy Library Web is installed
@@ -458,7 +470,7 @@ The way plugin works in MicroStrategy Library Web is the same as MicroStrategy W
 3. Download and unzip the [Sample MSTR Web Plugin](../samples/dist/MSTRWeb-plugin.zip)
 4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategyLibrary"
 5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted
-   1. You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment. Based on your authentication mode, you may need to change `authMode: mstrHyper.AUTH_MODES.GUEST` as well, see [here](../config/README.md#authentication-configurations) for more details
+   - You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment. Based on your authentication mode, you may need to change `authMode: mstrHyper.AUTH_MODES.GUEST` as well, see [here](../config/README.md#authentication-configurations) for more details
 
     ```js
     (function (config) {
