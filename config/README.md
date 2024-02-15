@@ -441,6 +441,57 @@ A web page can embed another web page with the `iframe` tag in HTML. You may cho
 </script>
 ```
 
+## Refresh Settings
+
+This setting is used to control Hyper SDK's refresh behavior.
+SDK will regularly check if the hyper card data get updated with this setting on.
+Here's an example about the refresh setting configuration:
+
+```html
+<script>
+  window.addEventListener('load', function () {
+    mstrHyper
+      .start({
+        server: 'https://demo.microstrategy.com/MicroStrategyLibrary/',
+        auth: {
+          authMode: mstrHyper.AUTH_MODES.GUEST
+        },
+        refresh: {
+          enabled: true,
+          interval: 600000,
+          afterRefresh: (success) => console.log(`refresh ${success? 'success' : 'failed'}`)
+        }
+      })
+      .then(function () {
+        console.log('MicroStrategy HyperIntelligence is initialized.');
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  });
+</script>
+```
+
+In this example, we enabled auto refresh for Hyper SDK, set the refresh interval as 600000ms(10 mins) and use a callback to get the refresh result(when fresh success, console will print 'refresh success', when failed, console will print 'refresh failed').
+
+### Default Value
+
+Here's the default value of refresh setting:
+
+```js
+{
+  refresh: {
+    enabled: true,
+    interval: 300000,
+    afterRefresh: () => {}
+  }
+}
+```
+
+By default, Hyper SDK's auto refresh is on.
+It will check with server to see if any hyper card need to refresh every 5mins.
+The `afterRefresh` callback will do nothing.
+
 ## Error Handling
 
 If there is any error while using Hyper SDK, the error object will be thrown as specified below:
