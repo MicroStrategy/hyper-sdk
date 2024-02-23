@@ -459,7 +459,7 @@ Here's an example about the refresh setting configuration:
         refresh: {
           enabled: true,
           interval: 600000,
-          afterRefresh: (success) => console.log(`refresh ${success? 'success' : 'failed'}`)
+          afterRefresh: (result) => console.log(result)
         }
       })
       .then(function () {
