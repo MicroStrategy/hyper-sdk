@@ -8,6 +8,7 @@
   * [Enable and Disable Cards](config/README.md#enable-and-disable-cards)
   * [Search](config/README.md#search)
   * [Highlight Settings](config/README.md#highlight-settings)
+  * [Refresh Settings](config/README.md#refresh-settings)
   * [Error Handling](config/README.md#error-handling)
 - [Application Integration Samples](samples)
   * [Integrate Hyper SDK to a website](samples/README.md#integrate-hyper-sdk-to-a-website)

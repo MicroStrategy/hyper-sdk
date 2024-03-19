@@ -48,6 +48,7 @@ window will be closed automatically.</p>
 
 ## start(options) ⇒ <code>Promise&lt;Object&gt;</code>
 Start the hyper sdk with configurations. It will init the hyper sdk, and login user with the auth options, then enable cards specified in the configurations, if not specified, it will enable all the certified cards or owned cards by default.
+The Hyper SDK is designed to update card data without manual intervention seamlessly. It initiates an automatic refresh every 5 minutes, examining data and card definitions for any modifications. Upon detecting a change, it triggers an automatic refresh to incorporate the updated information. Users can customize this automatic refresh behavior through the available "refresh" options.
 
 **Kind**: global function
 **Returns**: A promise of Object represent which card is enabled and which card meet error when enable it.
@@ -80,6 +81,9 @@ Start the hyper sdk with configurations. It will init the hyper sdk, and login u
 | [options.searching.onSearch]            | <code>object</code>                    |                        | callback for handling incremental search result                              |
 | [options.searching.onSort]              | <code>object</code>                    |                        | callback for handling sort event                                             |
 | [options.searchEnabled]                 | <code>boolean</code>                   |                        | flag to have search feature enabled, false by default                        |
+| [options.refresh.enabled]               | <code>boolean</code>                   | <code>true</code>      | flag to enable auto refresh, true by default                        |
+| [options.refresh.interval]              | <code>number</code>                    | <code>300000</code>    | flag to config the auto refresh interval                        |
+| [options.refresh.afterRefresh]          | <code>function</code>                  | <code>()=>{}</code>    | optional callback which will get triggered when refresh finished                        |
 
 <a name="enableSearch"></a>
 
