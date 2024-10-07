@@ -25,8 +25,6 @@ Currently, Hyper SDK supports:
 | **Browser**     | **Supported Versions** |
 | :-------------- | :--------------------- |
 | Google Chrome   | v80.0+                 |
-| Mozilla Firefox | v79.0+                 |
-| Apple Safari    | v12.0+                 |
 | Microsoft Edge  | v80.0+                 |
 
 ## Other Prerequisites
