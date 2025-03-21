@@ -4,7 +4,7 @@
   - [Integrate Hyper SDK to a website](#integrate-hyper-sdk-to-a-website)
     - [1. Load Hyper SDK on your web pages](#1-load-hyper-sdk-on-your-web-pages)
     - [2. Initialize the Hyper SDK](#2-initialize-the-hyper-sdk)
-    - [Working together with MicroStrategy Embedding SDK](#working-together-with-microstrategy-embedding-sdk)
+    - [Working together with Strategy Embedding SDK](#working-together-with-strategy-embedding-sdk)
   - [Integrate Hyper SDK to Sharepoint pages](#integrate-hyper-sdk-to-sharepoint-pages)
     - [SharePoint Online Web Parts](#sharepoint-online-web-parts)
       - [Classic Sites](#classic-sites)
@@ -12,12 +12,12 @@
   - [Integrate Hyper SDK to Salesforce pages](#integrate-hyper-sdk-to-salesforce-pages)
     - [How to use HyperSDK in Salesforce Visualforce page](#how-to-use-hypersdk-in-salesforce-visualforce-page)
     - [Other ways to use HyperSDK](#other-ways-to-use-hypersdk)
-  - [Integrate Hyper SDK to MicroStrategy Web via a plugin](#integrate-hyper-sdk-to-microstrategy-web-via-a-plugin)
-    - [How to deploy the Hyper SDK plugin on MicroStrategy Web?](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-web)
-    - [How to deploy the Seamless Hyper SDK plugin on MicroStrategy Web?](#how-to-deploy-the-seamless-hyper-sdk-plugin-on-microstrategy-web)
-  - [Integrate Hyper SDK to MicroStrategy Library Web via a plugin](#integrate-hyper-sdk-to-microstrategy-library-web-via-a-plugin)
-    - [How to deploy the Hyper SDK plugin on MicroStrategy Library Web?](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-library-web)
-    - [How to deploy the Hyper SDK plugin and only enable it on specific dossier(s) MicroStrategy Library Web?](#how-to-deploy-the-hyper-sdk-plugin-and-only-enable-it-on-specific-dossiers-microstrategy-library-web)
+  - [Integrate Hyper SDK to Strategy Web via a plugin](#integrate-hyper-sdk-to-strategy-web-via-a-plugin)
+    - [How to deploy the Hyper SDK plugin on Strategy Web?](#how-to-deploy-the-hyper-sdk-plugin-on-strategy-web)
+    - [How to deploy the Seamless Hyper SDK plugin on Strategy Web?](#how-to-deploy-the-seamless-hyper-sdk-plugin-on-strategy-web)
+  - [Integrate Hyper SDK to Strategy Library Web via a plugin](#integrate-hyper-sdk-to-strategy-library-web-via-a-plugin)
+    - [How to deploy the Hyper SDK plugin on Strategy Library Web?](#how-to-deploy-the-hyper-sdk-plugin-on-strategy-library-web)
+    - [How to deploy the Hyper SDK plugin and only enable it on specific dossier(s) Strategy Library Web?](#how-to-deploy-the-hyper-sdk-plugin-and-only-enable-it-on-specific-dossiers-strategy-library-web)
 
 ## Integrate Hyper SDK to a website
 
@@ -40,7 +40,7 @@ src="{YOUR_LIBRARY_SERVER_BASE_URI}/static/hyper/sdk/js/mstr_hyper.bundle.js">
 
 ### 2. Initialize the Hyper SDK
 
-Hyper SDK needs to connect to a MicroStrategy Library Server to work. After Hyper SDK is loaded to your web page, initialize Hyper SDK by calling `mstrHyper.start` function like below:
+Hyper SDK needs to connect to a Strategy Library Server to work. After Hyper SDK is loaded to your web page, initialize Hyper SDK by calling `mstrHyper.start` function like below:
 
 ```html
 <script>
@@ -53,7 +53,7 @@ Hyper SDK needs to connect to a MicroStrategy Library Server to work. After Hype
         }
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -62,7 +62,7 @@ Hyper SDK needs to connect to a MicroStrategy Library Server to work. After Hype
 </script>
 ```
 
-### Working together with MicroStrategy Embedding SDK
+### Working together with Strategy Embedding SDK
 
 A typical use case of Hyper SDK is to work together with [Embedding SDK](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/EmbeddingSDK/Content/topics/Intro_to_the_Embedding_SDK.htm), here's an example:
 
@@ -248,21 +248,21 @@ Check out [Visualforce Developer Guide from Salesforce](https://developer.salesf
 
 Please refer to [Salesforce Experience Builder](https://help.salesforce.com/articleView?id=community_designer_overview.htm&type=5) and [Salesforce Community](https://www.youtube.com/watch?v=mwdgueihnXA).
 
-## Integrate Hyper SDK to MicroStrategy Web via a plugin
+## Integrate Hyper SDK to Strategy Web via a plugin
 
-Some MicroStrategy Web customizations require the use of JavaScript to be included on a MicroStrategy Web page. The plug-in architecture provided by MicroStrategy Web can be used to achieve this purpose.
+Some Strategy Web customizations require the use of JavaScript to be included on a Strategy Web page. The plug-in architecture provided by Strategy Web can be used to achieve this purpose.
 > Read more about [Adding Custom JavaScript](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/WebSDK/Content/topics/promptarch/PA_Adding_Custom_JavaScript.htm)
 
-Here we provide 2 sample plugins you can use in MicroStrategy Web.
+Here we provide 2 sample plugins you can use in Strategy Web.
 
 If you want to customize your authentication by yourself, please refer to [Sample MSTR Web Plugin](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-web).
 
-If you want to have a seamless login experience, let Hyper SDK reuse MicroStrategy Web's session, please refer to [Sample MSTR Web Seamless Plugin](#how-to-deploy-the-seamless-hyper-sdk-plugin-on-microstrategy-web).
+If you want to have a seamless login experience, let Hyper SDK reuse Strategy Web's session, please refer to [Sample MSTR Web Seamless Plugin](#how-to-deploy-the-seamless-hyper-sdk-plugin-on-microstrategy-web).
 
-### How to deploy the Hyper SDK plugin on MicroStrategy Web?
+### How to deploy the Hyper SDK plugin on Strategy Web?
 
-1. Connect to the application server where MicroStrategy Web is installed
-2. Navigate to the path for MicroStrategy Web
+1. Connect to the application server where Strategy Web is installed
+2. Navigate to the path for Strategy Web
 3. Download and unzip the [Sample MSTR Web Plugin](../samples/dist/MSTRWeb-plugin.zip)
 4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategy"
 5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted
@@ -301,14 +301,14 @@ If you want to have a seamless login experience, let Hyper SDK reuse MicroStrate
 
 6. Restart the application server
 
-### How to deploy the Seamless Hyper SDK plugin on MicroStrategy Web?
+### How to deploy the Seamless Hyper SDK plugin on Strategy Web?
 
-1. Connect to the application server where MicroStrategy Web is installed
-2. Navigate to the path for MicroStrategy Web
+1. Connect to the application server where Strategy Web is installed
+2. Navigate to the path for Strategy Web
 3. Download and unzip the [Sample MSTR Web Seamless Plugin](../samples/dist/MSTRWeb-plugin-seamless-login.zip)
 4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategy".
 5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted.
-   - You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment, `mstrWebUrl: 'YOU MSTR WEB URL'` to the real MicroStrategy Web Url in you environment
+   - You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment, `mstrWebUrl: 'YOU MSTR WEB URL'` to the real Strategy Web Url in you environment
 
     ```js
     (function (mstrConfig, config) {
@@ -417,7 +417,7 @@ If you want to have a seamless login experience, let Hyper SDK reuse MicroStrate
             }
           })
           .then((cards) => {
-            console.log('MicroStrategy HyperIntelligence is initialized.');
+            console.log('Strategy HyperIntelligence is initialized.');
             console.log('Hyper Cards:', cards);
           })
           .catch((error) => console.error('mstrHyper.start error: ', error));
@@ -452,23 +452,23 @@ If you want to have a seamless login experience, let Hyper SDK reuse MicroStrate
 
 6. Restart the application server
 
-## Integrate Hyper SDK to MicroStrategy Library Web via a plugin
+## Integrate Hyper SDK to Strategy Library Web via a plugin
 
-The way plugin works in MicroStrategy Library Web is the same as MicroStrategy Web.
+The way plugin works in Strategy Library Web is the same as Strategy Web.
 > Read more about [Adding Custom JavaScript](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/WebSDK/Content/topics/promptarch/PA_Adding_Custom_JavaScript.htm)
 
-Here we provide 2 sample plugins you can use in MicroStrategy Library.
+Here we provide 2 sample plugins you can use in Strategy Library.
 
 If you want to have highlight show on all dossiers, please refer to [Sample MSTR Web Plugin](#how-to-deploy-the-hyper-sdk-plugin-on-microstrategy-library-web).
 
 If you want to only show highlight on specific dossier(s), please refer to [Sample MSTR Web Enable on Specific Dossiers Plugin](#how-to-deploy-the-hyper-sdk-plugin-and-only-enable-it-on-specific-dossiers-microstrategy-library-web).
 
-### How to deploy the Hyper SDK plugin on MicroStrategy Library Web?
+### How to deploy the Hyper SDK plugin on Strategy Library Web?
 
-1. Connect to the application server where MicroStrategy Library Web is installed
-2. Navigate to the path for MicroStrategy Library Web
+1. Connect to the application server where Strategy Library Web is installed
+2. Navigate to the path for Strategy Library Web
 3. Download and unzip the [Sample MSTR Web Plugin](../samples/dist/MSTRWeb-plugin.zip)
-4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategyLibrary"
+4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "StrategyLibrary"
 5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted
    - You should change `libraryServerUrl: 'YOUR LIBRARY SERVER URL'` to the real Library Server Url in your environment. Based on your authentication mode, you may need to change `authMode: mstrHyper.AUTH_MODES.GUEST` as well, see [here](../config/README.md#authentication-configurations) for more details
 
@@ -505,10 +505,10 @@ If you want to only show highlight on specific dossier(s), please refer to [Samp
 
 6. Restart the application server
 
-### How to deploy the Hyper SDK plugin and only enable it on specific dossier(s) MicroStrategy Library Web?
+### How to deploy the Hyper SDK plugin and only enable it on specific dossier(s) Strategy Library Web?
 
-1. Connect to the application server where MicroStrategy Library Web is installed
-2. Navigate to the path for MicroStrategy Library Web
+1. Connect to the application server where Strategy Library Web is installed
+2. Navigate to the path for Strategy Library Web
 3. Download and unzip the [Sample MSTR Web Enable on Specific Dossiers Plugin](../samples/dist/MSTR-Library-Web-plugin-enable-on-specific-dossiers.zip)
 4. Copy and paste the "Hyper-SDK" folder in the "Plugins" folder under "MicroStrategyLibrary"
 5. Open and edit the "global.js" in "javascript" under the "Hyper-SDK" folder just pasted

@@ -1,4 +1,4 @@
-# MicroStrategy Hyper SDK
+# Strategy Hyper SDK
 
 
 - [System Requirements](system-requirements.md)
@@ -12,11 +12,11 @@
   * [Error Handling](config/README.md#error-handling)
 - [Application Integration Samples](samples)
   * [Integrate Hyper SDK to a website](samples/README.md#integrate-hyper-sdk-to-a-website)
-  * [Working together with MicroStrategy Embedding SDK](samples/README.md#working-together-with-microstrategy-embedding-sdk)
+  * [Working together with Strategy Embedding SDK](samples/README.md#working-together-with-strategy-embedding-sdk)
   - [Integrate Hyper SDK to Sharepoint pages](samples/README.md#integrate-hyper-sdk-to-sharepoint-pages)
   * [Integrate Hyper SDK to Salesforce pages](samples/README.md#integrate-hyper-sdk-to-salesforce-pages)
-  * [Integrate Hyper SDK to MicroStrategy Web via a plugin](samples/README.md#integrate-hyper-sdk-to-microstrategy-web-via-a-plugin)
-  * [Integrate Hyper SDK to MicroStrategy Library via a plugin](samples/README.md#integrate-hyper-sdk-to-microstrategy-library-web-via-a-plugin)
+  * [Integrate Hyper SDK to Strategy Web via a plugin](samples/README.md#integrate-hyper-sdk-to-strategy-web-via-a-plugin)
+  * [Integrate Hyper SDK to Strategy Library via a plugin](samples/README.md#integrate-hyper-sdk-to-strategy-library-web-via-a-plugin)
 - [Frequently Asked Questions](faq.md)
 - [API Doc](api.md)
 - [Code Examples](https://microstrategy.github.io/hyper-sdk/code-examples/)
@@ -25,7 +25,7 @@
 
 ## Introduction to HyperIntelligence
 
-[HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence) was introduced in MicroStrategy 2019 as a new addition to MicroStrategy Workstation and allows analysts to create objects called Cards.
+[HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence) was introduced in 2019 as a new addition to Strategy Workstation and allows analysts to create objects called Cards.
 
 Cards are visual representations of your data. In a card, you can create lists, matrix grids, ring charts, or text boxes to display your data in a quick and concise manner. By using an attribute from your data to serve as the keyword attribute, that attribute will then identify the elements that will trigger a card to appear.
 

@@ -4,7 +4,7 @@ The following prerequisites must be met to use Hyper SDK.
 
 ## System Requirements
 
-The Hyper SDK leverages [MicroStrategy REST API](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/RESTSDK/Content/topics/REST_API/REST_API.htm) and is currently hosted with MicroStrategy Library server instance. You will need to have your application integrated with the Hyper SDK and connected to a MicroStrategy Library server instance in order to consume HyperIntelligence Cards.
+The Hyper SDK leverages [Strategy REST API](https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/RESTSDK/Content/topics/REST_API/REST_API.htm) and is currently hosted with Strategy Library server instance. You will need to have your application integrated with the Hyper SDK and connected to a Strategy Library server instance in order to consume HyperIntelligence Cards.
 
 **Platform Version Support:**
 
@@ -59,7 +59,7 @@ Using the Library Admin page is the easiest way to enable CORS for the REST Serv
     security.allowedOrigins=http://example.com:port
     ```
 
-4. Restart your MicroStrategy Library web application hosted on the application server.
+4. Restart your Strategy Library web application hosted on the application server.
 
 ### SameSite
 
@@ -70,4 +70,4 @@ Chrome(version 80+) and Edge(version 86+) Web Browser introduce new changes whic
 
 For Hyper SDK to function as expected in a 3rd party context, it is required to explicitly label session cookies with `SameSite=None; Secure`.
 
-For more information, see [Chrome v80 Cookie Behavior and the Impact on MicroStrategy Deployments](https://community.microstrategy.com/s/article/Chrome-v80-Cookie-Behavior-and-the-impact-on-MicroStrategy-Deployments?language=en_US).
+For more information, see [Chrome v80 Cookie Behavior and the Impact on Strategy One Deployments](https://community.microstrategy.com/s/article/Chrome-v80-Cookie-Behavior-and-the-impact-on-MicroStrategy-Deployments?language=en_US).
