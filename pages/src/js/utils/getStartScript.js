@@ -61,7 +61,7 @@ window.addEventListener('load', function () {
       ${highlight}
     })
     .then(function () {
-      console.log('MicroStrategy HyperIntelligence is initialized.');
+      console.log('Strategy HyperIntelligence is initialized.');
     })
     .catch(function (error) {
       console.error(error);
