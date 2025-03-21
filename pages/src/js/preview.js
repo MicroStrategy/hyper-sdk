@@ -323,7 +323,7 @@ window.addEventListener('load', () => {
   init()
     .then(() => {
       status(
-        `MicroStrategy HyperIntelligence is initialized.<br/><br/>
+        `Strategy HyperIntelligence is initialized.<br/><br/>
 You may now open the DevTools and call any of the Hyper SDK APIs, such as <i>mstrHyper.enableCards</i> and <i>mstrHyper.disableCards</i>.
 `,
         'success'
