@@ -9,7 +9,7 @@
 - `Q`: Why does the SDK throw the error: "lack of privilege"?
 - `A`: To be able to use Hyper SDK, you must have the `Use Hyper SDK` privilege.
   *Where to find the settings to control privileges:*
-  - Install and open [MicroStrategy Workstation](https://www2.microstrategy.com/producthelp/current/Workstation/WebHelp/Lang_1033/Content/home_workstation.htm)
+  - Install and open [Strategy Workstation](https://www2.microstrategy.com/producthelp/current/Workstation/WebHelp/Lang_1033/Content/home_workstation.htm)
   - Connect and Select your environment -> Right Menu
   ![picture 3](./img/env_getinfo.png)  
   - Select the [Security Roles](https://www2.microstrategy.com/producthelp/current/Workstation/WebHelp/Lang_1033/Content/create_security_roles.htm)

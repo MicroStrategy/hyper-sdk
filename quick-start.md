@@ -5,7 +5,7 @@ To start using Hyper SDK, see the basic workflow below:
 ---
 **Prerequisites**
 
-- You’ll need a MicroStrategy Library Server to enable HyperIntelligence on your websites. For testing purposes, you may try it with https://demo.microstrategy.com/MicroStrategyLibrary/.
+- You’ll need a Strategy Library Server to enable HyperIntelligence on your websites. For testing purposes, you may try it with https://demo.microstrategy.com/MicroStrategyLibrary/.
 
 - You’ll need to create one or more Hyper Cards with Workstation and deploy them. Check the [Introduction to HyperIntelligence](https://www2.microstrategy.com/producthelp/Current/Hyper/en-us/Content/intro_hyperintelligence.htm) for details. On the demo Library Server, a few Hyper Cards are available so you may skip this step.
 ---
@@ -24,7 +24,7 @@ In your website or application, add this HTML code snippet to your web pages:
         }
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);

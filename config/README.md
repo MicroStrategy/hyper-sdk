@@ -23,7 +23,7 @@ The first step is to load the Hyper SDK's main JavaScript bundle. You can do it 
 
 ### Initialization
 
-For Hyper SDK to work, it needs to connect to the MicroStrategy Library Server and download the HyperIntelligence Cards. Next, add the following code snippet to your web pages to initialize the Hyper SDK.
+For Hyper SDK to work, it needs to connect to the Strategy Library Server and download the HyperIntelligence Cards. Next, add the following code snippet to your web pages to initialize the Hyper SDK.
 
 ```html
 <script>
@@ -38,7 +38,7 @@ For Hyper SDK to work, it needs to connect to the MicroStrategy Library Server a
         }
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -48,7 +48,7 @@ For Hyper SDK to work, it needs to connect to the MicroStrategy Library Server a
 ```
 
 > Please replace Library server url with your MCI instance url.
-> e.g. *https://mci-xxx.hypernow.microstrategy.com/MicroStrategyLibrary*
+> e.g. *https://mci-xxx.hypernow.strategy.com/MicroStrategyLibrary*
 
 Regarding how to create a HyperIntelligence Service instance, please refer to [HyperIntelligence](https://www.microstrategy.com/en/hyperintelligence).
 
@@ -99,7 +99,7 @@ Currently, Hyper SDK supports below authentication modes:
 >           }
 >         })
 >         .then(function () {
->           console.log('MicroStrategy HyperIntelligence is initialized.');
+>           console.log('Strategy HyperIntelligence is initialized.');
 >         })
 >         .catch(function (error) {
 >           console.error(error);
@@ -110,7 +110,7 @@ Currently, Hyper SDK supports below authentication modes:
 
 ### Session Management
 
-There are two ways to establish a MicroStrategy Library Server session for Hyper SDK:
+There are two ways to establish a Strategy Library Server session for Hyper SDK:
 
 #### Let Hyper SDK manage the session
 
@@ -132,7 +132,7 @@ You must choose one of the supported authentication modes and determine whether 
         }
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -171,7 +171,7 @@ You can specify the `onSessionError` function to handle the authentication error
         searchEnabled: true
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -195,16 +195,16 @@ The Cross-Origin Resource Sharing (CORS) standard works by adding new [HTTP head
 
 #### Your web application manages the session
 
-Alternatively, your website can establish a MicroStrategy Library Server session and pass it to Hyper SDK. With this method, you can:
+Alternatively, your website can establish a Strategy Library Server session and pass it to Hyper SDK. With this method, you can:
 
 * Pass the authToken of the session to Hyper SDK during initialization.
 * *Or* leave authToken to null but call mstrHyper.login at the time you choose.
 
 > **What is the `authToken`?**
 >
-> The authToken is short for &quot;authorization token&quot;. It is made of a few random characters that represent a session for a particular user account. For more information, check the [/api/auth/login](https://demo.microstrategy.com/MicroStrategyLibrary/api-docs/index.html#/Authentication/postLogin) RESTful API of MicroStrategy Library Server.
+> The authToken is short for &quot;authorization token&quot;. It is made of a few random characters that represent a session for a particular user account. For more information, check the [/api/auth/login](https://demo.microstrategy.com/MicroStrategyLibrary/api-docs/index.html#/Authentication/postLogin) RESTful API of Strategy Library Server.
 
-When the MicroStrategy Library Server session times out, you’ll need to make a new session and pass the new `authToken` to the Hyper SDK in the `onSessionError` callback function.
+When the Strategy Library Server session times out, you’ll need to make a new session and pass the new `authToken` to the Hyper SDK in the `onSessionError` callback function.
 
 *Example:*
 
@@ -234,7 +234,7 @@ When the MicroStrategy Library Server session times out, you’ll need to make a
         }
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -281,7 +281,7 @@ E.g. we have 2 certified cards on server from the same project id: `EC70648611E7
         }]
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -404,7 +404,7 @@ An example of specifiying `overlay` as the highlighting method:
         }
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -432,7 +432,7 @@ A web page can embed another web page with the `iframe` tag in HTML. You may cho
         }
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -463,7 +463,7 @@ Here's an example about the refresh setting configuration:
         }
       })
       .then(function () {
-        console.log('MicroStrategy HyperIntelligence is initialized.');
+        console.log('Strategy HyperIntelligence is initialized.');
       })
       .catch(function (error) {
         console.error(error);
@@ -521,9 +521,9 @@ const ErrorNames = {
 
 `AuthenticationError` will be thrown when there is an error either authenticating user with login API or using start API.
 
-`ServerUnreachableError` will be thrown if it times out when connecting with the MicroStrategy Library server.
+`ServerUnreachableError` will be thrown if it times out when connecting with the Strategy Library server.
 
-`SessionError` will be thrown after user logins successfully, and sending rest api calls to the MicroStrategyLibrary server causes an error.
+`SessionError` will be thrown after user logins successfully, and sending rest api calls to the StrategyLibrary server causes an error.
 
 `CardError` will be thrown when there is error either downloading the card data, getting the card html content, or having the quota exceeded to store card data.
 
